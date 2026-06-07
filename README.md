@@ -31,6 +31,10 @@ featured: false
 
 `featured: true` 的文章会出现在首页精选区域。
 
+## RSS
+
+订阅地址：`https://Huaerzi659.github.io/rss.xml`
+
 ## UI/UX Skill
 
 本项目已按用户要求安装 `ui-ux-pro-max`：

@@ -1,17 +1,32 @@
 ---
 interface Props {
   tag: string;
+  href?: string;
+  count?: number;
 }
 
-const { tag } = Astro.props;
+const { tag, href, count } = Astro.props;
 ---
 
-<span class="tag-pill">#{tag}</span>
+{
+  href ? (
+    <a class="tag-pill tag-link" href={href} aria-label={`查看 ${tag} 主题`}>
+      <span>#{tag}</span>
+      {count !== undefined && <span class="tag-count">{count}</span>}
+    </a>
+  ) : (
+    <span class="tag-pill">
+      <span>#{tag}</span>
+      {count !== undefined && <span class="tag-count">{count}</span>}
+    </span>
+  )
+}
 
 <style>
   .tag-pill {
     display: inline-flex;
     align-items: center;
+    gap: 6px;
     min-height: 28px;
     border: 1px solid rgba(0, 245, 255, 0.26);
     border-radius: 999px;
@@ -23,5 +38,24 @@ const { tag } = Astro.props;
     line-height: 1;
     white-space: nowrap;
     text-shadow: var(--cyan-glow);
+  }
+
+  .tag-link {
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .tag-link:hover {
+    border-color: rgba(255, 43, 214, 0.58);
+    background: rgba(255, 43, 214, 0.1);
+    box-shadow: var(--pink-glow);
+    color: #ffd8f7;
+  }
+
+  .tag-count {
+    border-left: 1px solid rgba(0, 245, 255, 0.24);
+    padding-left: 6px;
+    color: var(--accent-ink);
   }
 </style>

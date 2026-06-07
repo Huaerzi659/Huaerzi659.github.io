@@ -1,0 +1,59 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="回到首页">Waltz, Then Think</a>
+    <nav class="nav" aria-label="主导航">
+      <a href="/articles/">文章</a>
+      <a href="/about/">关于</a>
+      <a href="https://github.com/Huaerzi659" target="_blank" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--line);
+    background: rgba(251, 247, 239, 0.88);
+    backdrop-filter: blur(16px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .header-inner {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .brand {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 0.95rem;
+  }
+
+  .nav a {
+    text-decoration: none;
+  }
+
+  @media (max-width: 560px) {
+    .header-inner {
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 14px 0;
+    }
+
+    .nav {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+</style>

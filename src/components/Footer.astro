@@ -1,7 +1,11 @@
 <footer class="site-footer">
-  <div class="container footer-grid">
-    <p class="footer-title">Waltz, Then Think</p>
-    <div class="footer-links">
+  <div class="container footer-panel">
+    <div>
+      <p class="terminal-label">workspace / footer</p>
+      <p class="footer-title">Waltz, Then Think</p>
+      <p class="footer-copy">Built with Astro. Updated by writing.</p>
+    </div>
+    <div class="footer-links" aria-label="联系链接">
       <a href="https://github.com/Huaerzi659" target="_blank" rel="noreferrer">GitHub</a>
       <a href="mailto:718231052@qq.com">718231052@qq.com</a>
     </div>
@@ -10,34 +14,60 @@
 
 <style>
   .site-footer {
-    border-top: 1px solid var(--line);
-    padding: 34px 0;
-    color: var(--muted-ink);
+    padding: 34px 0 42px;
   }
 
-  .footer-grid {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
+  .footer-panel {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.72);
+    padding: 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 20px;
   }
 
   .footer-title {
     margin: 0;
     font-family: var(--font-display);
-    color: var(--ink);
+    font-size: 1.35rem;
+    font-weight: 720;
+  }
+
+  .footer-copy {
+    margin: 8px 0 0;
+    color: var(--muted);
   }
 
   .footer-links {
     display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 10px;
   }
 
-  @media (max-width: 640px) {
-    .footer-grid {
-      align-items: flex-start;
-      flex-direction: column;
+  .footer-links a {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 8px 10px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .footer-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  @media (max-width: 680px) {
+    .footer-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+      justify-content: flex-start;
     }
   }
 </style>

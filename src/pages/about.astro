@@ -4,33 +4,50 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="关于" description="关于 Waltz 和 Waltz, Then Think。">
   <section class="section about-hero">
-    <div class="container grid-12">
-      <div class="about-title">
-        <p class="eyebrow">About Waltz</p>
-        <h1 class="section-title">关于这个地方</h1>
-      </div>
+    <div class="container workbench-grid">
       <div class="about-copy">
+        <p class="terminal-label">about / workspace owner</p>
+        <h1 class="section-title">关于这个地方</h1>
         <p>
-          这里不是一份简历，也不是一个只放技术答案的地方。
-          我更想把它当成一个长期更新的个人索引：记录技术、经验、感想，
+          这里不是简历，也不是只放标准答案的技术文档。
+          我更想把它当成一个长期使用的个人工作台：记录技术、经验、感想，
           也记录那些还没有长成完整文章的灵感。
         </p>
         <p>
-          如果说 Waltz 是一种步伐，那这个博客就是步伐之间的停顿。
-          先跳一步，再想一想。
+          `Waltz, Then Think` 这个名字，对我来说像一个顺序：
+          先动起来，先试一小步，然后再停下来想清楚。
         </p>
       </div>
+
+      <aside class="status-card surface">
+        <p class="terminal-label">current stack</p>
+        <dl>
+          <div>
+            <dt>writing</dt>
+            <dd>技术 / 经验 / 感想</dd>
+          </div>
+          <div>
+            <dt>building</dt>
+            <dd>Astro + Markdown</dd>
+          </div>
+          <div>
+            <dt>contact</dt>
+            <dd><a href="mailto:718231052@qq.com">718231052@qq.com</a></dd>
+          </div>
+        </dl>
+        <a class="button" href="https://github.com/Huaerzi659" target="_blank" rel="noreferrer">去 GitHub</a>
+      </aside>
     </div>
   </section>
 
   <section class="section contact-section">
-    <div class="container contact-card">
-      <p class="eyebrow">Contact</p>
-      <h2>可以从这里找到我</h2>
-      <div class="contact-links">
-        <a href="https://github.com/Huaerzi659" target="_blank" rel="noreferrer">GitHub / Huaerzi659</a>
-        <a href="mailto:718231052@qq.com">718231052@qq.com</a>
-      </div>
+    <div class="container contact-panel">
+      <p class="terminal-label">why write</p>
+      <h2>把想法留下来，才有机会继续迭代。</h2>
+      <p>
+        有些东西不写下来，就会一直停在“我好像懂了”的状态。
+        这个博客会慢慢收纳那些被调试过的想法。
+      </p>
     </div>
   </section>
 </BaseLayout>
@@ -40,45 +57,75 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     border-bottom: 1px solid var(--line);
   }
 
-  .about-title {
-    grid-column: span 6;
-  }
-
   .about-copy {
-    grid-column: 7 / span 5;
-    align-self: end;
-    color: var(--muted-ink);
-    font-size: 1.1rem;
+    grid-column: span 7;
   }
 
-  .contact-card {
+  .about-copy p:not(.terminal-label) {
+    max-width: 720px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.78;
+  }
+
+  .status-card {
+    grid-column: 8 / span 5;
+    align-self: end;
+    padding: 22px;
+  }
+
+  dl {
+    margin: 0 0 20px;
+    display: grid;
+    gap: 12px;
+  }
+
+  dl div {
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+  }
+
+  dt {
+    color: var(--faint);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+
+  dd {
+    margin: 4px 0 0;
+    color: var(--ink);
+  }
+
+  .contact-panel {
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    background: rgba(255, 255, 255, 0.55);
-    padding: 34px;
+    background: var(--ink);
+    padding: 28px;
+    color: var(--white);
   }
 
-  .contact-card h2 {
-    margin: 0 0 18px;
+  .contact-panel .terminal-label {
+    color: #93c5fd;
+  }
+
+  .contact-panel h2 {
+    max-width: 760px;
+    margin: 0;
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 4rem);
-    line-height: 1;
+    font-size: clamp(1.7rem, 4vw, 3rem);
+    line-height: 1.08;
   }
 
-  .contact-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
+  .contact-panel p:last-child {
+    max-width: 680px;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.72);
   }
 
   @media (max-width: 760px) {
-    .about-title,
-    .about-copy {
+    .about-copy,
+    .status-card {
       grid-column: auto;
-    }
-
-    .contact-card {
-      padding: 24px;
     }
   }
 </style>

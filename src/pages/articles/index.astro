@@ -10,14 +10,18 @@ const tags = getAllTags(posts);
 ---
 
 <BaseLayout title="文章" description="Waltz 的文章列表：技术、经验、感想与灵感。">
-  <section class="section article-hero">
-    <div class="container grid-12">
-      <div class="article-title">
-        <p class="eyebrow">Archive</p>
+  <section class="section archive-hero">
+    <div class="container workbench-grid">
+      <div class="archive-title">
+        <p class="terminal-label">archive / all records</p>
         <h1 class="section-title">文章</h1>
+        <p>这里收纳完整记录。技术、经验、感想和灵感不必被切得太整齐，它们都会先在这里留下痕迹。</p>
       </div>
-      <div class="article-tags">
-        {tags.map((tag) => <TagPill tag={tag} />)}
+      <div class="archive-panel surface">
+        <p class="terminal-label">topics</p>
+        <div class="article-tags">
+          {tags.map((tag) => <TagPill tag={tag} />)}
+        </div>
       </div>
     </div>
   </section>
@@ -30,17 +34,28 @@ const tags = getAllTags(posts);
 </BaseLayout>
 
 <style>
-  .article-hero {
+  .archive-hero {
     border-bottom: 1px solid var(--line);
   }
 
-  .article-title {
+  .archive-title {
     grid-column: span 7;
   }
 
-  .article-tags {
+  .archive-title p:last-child {
+    max-width: 620px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.08rem;
+  }
+
+  .archive-panel {
     grid-column: 8 / span 5;
     align-self: end;
+    padding: 20px;
+  }
+
+  .article-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -48,18 +63,13 @@ const tags = getAllTags(posts);
 
   .article-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    gap: 14px;
   }
 
   @media (max-width: 760px) {
-    .article-title,
-    .article-tags {
+    .archive-title,
+    .archive-panel {
       grid-column: auto;
-    }
-
-    .article-list {
-      grid-template-columns: 1fr;
     }
   }
 </style>

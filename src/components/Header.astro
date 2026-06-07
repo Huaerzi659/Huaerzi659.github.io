@@ -1,6 +1,9 @@
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label="回到首页">Waltz, Then Think</a>
+    <a class="brand" href="/" aria-label="回到首页">
+      <span class="brand-mark">W</span>
+      <span class="brand-text">Waltz<span>/think</span></span>
+    </a>
     <nav class="nav" aria-label="主导航">
       <a href="/articles/">文章</a>
       <a href="/about/">关于</a>
@@ -11,49 +14,85 @@
 
 <style>
   .site-header {
-    border-bottom: 1px solid var(--line);
-    background: rgba(251, 247, 239, 0.88);
-    backdrop-filter: blur(16px);
     position: sticky;
     top: 0;
     z-index: 10;
+    border-bottom: 1px solid rgba(216, 225, 234, 0.82);
+    background: rgba(246, 248, 251, 0.88);
+    backdrop-filter: blur(14px);
   }
 
   .header-inner {
-    min-height: 64px;
+    min-height: 62px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 18px;
   }
 
   .brand {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
     text-decoration: none;
+  }
+
+  .brand-mark {
+    display: inline-grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    background: var(--ink);
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .brand-text span {
+    color: var(--accent);
   }
 
   .nav {
     display: flex;
     align-items: center;
-    gap: 18px;
-    font-size: 0.95rem;
+    gap: 8px;
+    font-size: 0.94rem;
   }
 
   .nav a {
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    padding: 7px 10px;
+    color: var(--muted);
     text-decoration: none;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+
+  .nav a:hover {
+    border-color: var(--line);
+    background: var(--surface);
+    color: var(--accent-ink);
   }
 
   @media (max-width: 560px) {
     .header-inner {
-      align-items: flex-start;
+      align-items: stretch;
       flex-direction: column;
-      padding: 14px 0;
+      padding: 12px 0;
     }
 
     .nav {
-      width: 100%;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .nav a {
+      text-align: center;
     }
   }
 </style>

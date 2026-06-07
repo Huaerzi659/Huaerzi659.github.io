@@ -14,7 +14,10 @@ const href = `/articles/${post.id}/`;
 
 <article class:list={["article-card", variant]}>
   <a class="article-link" href={href}>
-    <p class="article-date">{formatDate(post.data.date)}</p>
+    <div class="article-meta">
+      <span>{formatDate(post.data.date)}</span>
+      {variant === "feature" && <span>featured</span>}
+    </div>
     <h2>{post.data.title}</h2>
     <p class="article-desc">{post.data.description}</p>
     <div class="article-tags" aria-label="文章标签">
@@ -27,13 +30,13 @@ const href = `/articles/${post.id}/`;
   .article-card {
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    background: rgba(255, 255, 255, 0.48);
-    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    background: rgba(255, 255, 255, 0.72);
+    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
   }
 
   .article-card:hover {
-    border-color: rgba(15, 111, 117, 0.35);
-    box-shadow: var(--shadow);
+    border-color: rgba(37, 99, 235, 0.38);
+    background: var(--surface);
     transform: translateY(-2px);
   }
 
@@ -41,41 +44,50 @@ const href = `/articles/${post.id}/`;
     display: grid;
     min-height: 100%;
     gap: 12px;
-    padding: 22px;
+    padding: 20px;
+    color: inherit;
     text-decoration: none;
   }
 
-  .feature .article-link {
-    padding: 30px;
+  .feature {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(219, 234, 254, 0.5));
   }
 
-  .article-date {
-    margin: 0;
-    color: var(--muted-ink);
-    font-size: 0.86rem;
+  .feature .article-link {
+    padding: 24px;
+  }
+
+  .article-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--faint);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 
   h2 {
     margin: 0;
     font-family: var(--font-display);
-    font-size: clamp(1.55rem, 3vw, 2.5rem);
-    line-height: 1.05;
+    font-size: clamp(1.25rem, 2vw, 1.7rem);
+    font-weight: 720;
+    line-height: 1.15;
     letter-spacing: 0;
   }
 
-  .compact h2 {
-    font-size: clamp(1.3rem, 2vw, 1.8rem);
+  .feature h2 {
+    font-size: clamp(1.45rem, 3vw, 2.15rem);
   }
 
   .article-desc {
     margin: 0;
-    color: var(--muted-ink);
+    color: var(--muted);
   }
 
   .article-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 6px;
+    margin-top: 4px;
   }
 </style>

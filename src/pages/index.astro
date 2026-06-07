@@ -7,32 +7,80 @@ import { getAllTags, getFeaturedPosts, sortPostsByDate } from "../lib/posts";
 
 const posts = sortPostsByDate(await getCollection("posts"));
 const featured = getFeaturedPosts(posts);
-const recent = posts.slice(0, 4);
+const recent = posts.slice(0, 3);
 const tags = getAllTags(posts);
 ---
 
 <BaseLayout description="Waltz 的个人博客：技术、经验、感想与灵感。">
-  <section class="hero section">
-    <div class="container grid-12">
-      <div class="hero-title">
-        <p class="eyebrow">Personal Magazine / Since 2026</p>
+  <section class="section workbench-hero">
+    <div class="container workbench-grid">
+      <div class="identity-panel">
+        <p class="terminal-label">waltz.workspace / online</p>
         <h1 class="display-title">Waltz,<br />Then Think</h1>
-      </div>
-      <div class="hero-copy">
-        <p>
-          这里记录技术、经验、感想，以及一些介于它们之间的灵感碎片。
-          先跳一步，再想一想。
+        <p class="hero-copy">
+          一个用来存放技术、经验和想法的个人工作台。写代码，也写那些还没完全成型的念头。
         </p>
-        <a class="hero-link" href="/articles/">读文章</a>
+        <div class="button-row">
+          <a class="button" href="/articles/">读文章</a>
+          <a class="button secondary" href="/about/">关于我</a>
+        </div>
+        <p class="stat-line" aria-label="当前状态">
+          <span>now: building</span>
+          <span>writing</span>
+          <span>debugging</span>
+        </p>
       </div>
+
+      <aside class="desk-panel surface" aria-label="思考工作台摘要">
+        <div class="panel-head">
+          <p class="terminal-label">thinking desk</p>
+          <span class="status-dot">live</span>
+        </div>
+        <div class="desk-stats">
+          <div>
+            <strong>{posts.length}</strong>
+            <span>articles</span>
+          </div>
+          <div>
+            <strong>{tags.length}</strong>
+            <span>topics</span>
+          </div>
+        </div>
+        <div class="desk-list">
+          <p class="desk-title">最近写下</p>
+          {recent.map((post) => (
+            <a href={`/articles/${post.id}/`}>
+              <span>{post.data.title}</span>
+              <small>{post.data.tags[0]}</small>
+            </a>
+          ))}
+        </div>
+        <div class="thinking-note">
+          <p class="terminal-label">current thought</p>
+          <p>把问题拆小，把想法写下，再慢慢把它们变成自己的方法。</p>
+        </div>
+      </aside>
     </div>
   </section>
 
   <section class="section">
+    <div class="container section-grid">
+      <div class="section-intro">
+        <p class="terminal-label">recent log</p>
+        <h2 class="section-title">最近写下</h2>
+        <p>这里不是最终答案库，更像持续更新的思考记录。</p>
+      </div>
+      <div class="record-list">
+        {recent.map((post) => <ArticleCard post={post} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section focus-section">
     <div class="container">
       <div class="section-heading">
-        <p class="eyebrow">Featured</p>
-        <h2 class="section-title">精选文章</h2>
+        <p class="terminal-label">pinned thinking</p>
+        <h2 class="section-title">精选思考</h2>
       </div>
       <div class="featured-grid">
         {featured.map((post) => <ArticleCard post={post} variant="feature" />)}
@@ -40,117 +88,229 @@ const tags = getAllTags(posts);
     </div>
   </section>
 
-  <section class="section inspiration-band">
-    <div class="container grid-12">
-      <div class="inspiration-card">
-        <p class="eyebrow">Fragments</p>
-        <h2>把想法先存起来。</h2>
-        <p>它们可能以后变成文章，也可能只是某天路过脑内的一小段旋律。</p>
+  <section class="section topic-section">
+    <div class="container topic-panel">
+      <div>
+        <p class="terminal-label">topic index</p>
+        <h2 class="section-title">主题索引</h2>
+        <p>技术、经验、感想和灵感会暂时放在这些入口下面，之后再慢慢长出更清晰的分类。</p>
       </div>
       <div class="tag-board">
         {tags.map((tag) => <TagPill tag={tag} />)}
       </div>
     </div>
   </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">Recent</p>
-        <h2 class="section-title">最近更新</h2>
-      </div>
-      <div class="recent-list">
-        {recent.map((post) => <ArticleCard post={post} />)}
-      </div>
-    </div>
-  </section>
 </BaseLayout>
 
 <style>
-  .hero {
+  .workbench-hero {
+    padding-top: 78px;
     border-bottom: 1px solid var(--line);
   }
 
-  .hero-title {
-    grid-column: span 8;
+  .identity-panel {
+    grid-column: span 7;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 22px;
   }
 
   .hero-copy {
-    grid-column: 9 / span 4;
-    align-self: end;
-    color: var(--muted-ink);
-    font-size: 1.08rem;
+    max-width: 620px;
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(1.08rem, 2vw, 1.28rem);
+    line-height: 1.75;
   }
 
-  .hero-link {
-    display: inline-flex;
-    margin-top: 18px;
-    border-bottom: 1px solid currentColor;
+  .desk-panel {
+    grid-column: 8 / span 5;
+    align-self: center;
+    padding: 22px;
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .status-dot {
+    border: 1px solid rgba(15, 118, 110, 0.22);
+    border-radius: 999px;
+    background: var(--mint-soft);
+    padding: 4px 9px;
+    color: var(--mint);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+  }
+
+  .desk-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 12px 0 18px;
+  }
+
+  .desk-stats div {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-soft);
+    padding: 16px;
+  }
+
+  .desk-stats strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    line-height: 1;
+  }
+
+  .desk-stats span {
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  .desk-list {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+  }
+
+  .desk-title {
+    margin: 0 0 8px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+
+  .desk-list a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    border-radius: var(--radius);
+    padding: 9px 0;
     text-decoration: none;
   }
 
+  .desk-list a + a {
+    border-top: 1px solid rgba(216, 225, 234, 0.7);
+  }
+
+  .desk-list span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .desk-list small {
+    color: var(--faint);
+    font-family: var(--font-mono);
+  }
+
+  .thinking-note {
+    margin-top: 18px;
+    border: 1px solid rgba(245, 158, 11, 0.24);
+    border-radius: var(--radius);
+    background: var(--signal-soft);
+    padding: 16px;
+  }
+
+  .thinking-note p:last-child {
+    margin: 0;
+    color: #6d4b00;
+  }
+
+  .section-grid {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.38fr) minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .section-intro {
+    position: sticky;
+    top: 88px;
+    align-self: start;
+  }
+
+  .section-intro p:last-child,
+  .topic-panel p {
+    color: var(--muted);
+  }
+
+  .record-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .focus-section {
+    background: rgba(237, 243, 248, 0.52);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
   .section-heading {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .featured-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .topic-panel {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.72);
+    padding: 26px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
     gap: 22px;
   }
 
-  .inspiration-band {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .inspiration-card {
-    grid-column: span 7;
-  }
-
-  .inspiration-card h2 {
-    margin: 0 0 14px;
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 4.6rem);
-    line-height: 1;
-  }
-
-  .inspiration-card p:last-child {
-    max-width: 520px;
-    color: rgba(251, 247, 239, 0.72);
-  }
-
   .tag-board {
-    grid-column: 9 / span 4;
+    align-self: end;
     display: flex;
-    align-content: flex-end;
-    align-items: flex-end;
+    justify-content: flex-end;
     flex-wrap: wrap;
     gap: 10px;
   }
 
-  .inspiration-band :global(.tag-pill) {
-    border-color: rgba(251, 247, 239, 0.28);
-    color: var(--paper);
-  }
-
-  .recent-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  @media (max-width: 760px) {
-    .hero-title,
-    .hero-copy,
-    .inspiration-card,
-    .tag-board {
+  @media (max-width: 900px) {
+    .identity-panel,
+    .desk-panel {
       grid-column: auto;
+      min-height: auto;
+    }
+
+    .workbench-hero {
+      padding-top: 48px;
     }
 
     .featured-grid,
-    .recent-list {
+    .section-grid,
+    .topic-panel {
       grid-template-columns: 1fr;
+    }
+
+    .section-intro {
+      position: static;
+    }
+
+    .tag-board {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .desk-list a {
+      grid-template-columns: 1fr;
+      gap: 2px;
     }
   }
 </style>

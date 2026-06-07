@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import TagPill from "../../components/TagPill.astro";
-import { getAllTags, sortPostsByDate } from "../../lib/posts";
+import { getAllTags, getTagHref, sortPostsByDate } from "../../lib/posts";
 
 const posts = sortPostsByDate(await getCollection("posts"));
 const tags = getAllTags(posts);
@@ -20,7 +20,7 @@ const tags = getAllTags(posts);
       <div class="archive-panel surface">
         <p class="terminal-label">topics</p>
         <div class="article-tags">
-          {tags.map((tag) => <TagPill tag={tag} />)}
+          {tags.map((tag) => <TagPill tag={tag} href={getTagHref(tag)} />)}
         </div>
       </div>
     </div>

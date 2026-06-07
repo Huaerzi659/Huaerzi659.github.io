@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import TagPill from "../components/TagPill.astro";
-import { getAllTags, getFeaturedPosts, sortPostsByDate } from "../lib/posts";
+import { getAllTags, getFeaturedPosts, getTagHref, sortPostsByDate } from "../lib/posts";
 
 const posts = sortPostsByDate(await getCollection("posts"));
 const featured = getFeaturedPosts(posts);
@@ -96,7 +96,7 @@ const tags = getAllTags(posts);
         <p>技术、经验、感想和灵感会暂时放在这些入口下面，之后再慢慢长出更清晰的分类。</p>
       </div>
       <div class="tag-board">
-        {tags.map((tag) => <TagPill tag={tag} />)}
+        {tags.map((tag) => <TagPill tag={tag} href={getTagHref(tag)} />)}
       </div>
     </div>
   </section>

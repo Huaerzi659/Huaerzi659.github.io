@@ -99,13 +99,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .contact-panel {
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    background: var(--ink);
+    background:
+      linear-gradient(135deg, rgba(255, 43, 214, 0.16), transparent 42%),
+      #020617;
+    box-shadow: var(--shadow);
     padding: 28px;
     color: var(--white);
   }
 
   .contact-panel .terminal-label {
-    color: #93c5fd;
+    color: var(--neon-pink);
+    text-shadow: var(--pink-glow);
   }
 
   .contact-panel h2 {

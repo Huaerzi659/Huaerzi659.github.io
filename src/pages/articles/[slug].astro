@@ -95,9 +95,14 @@ const next = posts[index - 1];
   .post-nav a {
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(11, 16, 32, 0.82);
     padding: 14px;
     text-decoration: none;
+  }
+
+  .post-nav a:hover {
+    border-color: var(--neon-pink);
+    box-shadow: var(--pink-glow);
   }
 
   .post-nav a:last-child {
@@ -116,7 +121,7 @@ const next = posts[index - 1];
     margin: 36px auto 0;
     border: 1px dashed var(--line-strong);
     border-radius: var(--radius);
-    background: rgba(255, 255, 255, 0.56);
+    background: rgba(0, 245, 255, 0.06);
     padding: 22px;
     color: var(--muted);
   }

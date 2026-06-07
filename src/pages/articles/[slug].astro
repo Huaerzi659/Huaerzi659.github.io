@@ -2,7 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TagPill from "../../components/TagPill.astro";
-import { formatDate, sortPostsByDate } from "../../lib/posts";
+import { formatDate, getTagHref, sortPostsByDate } from "../../lib/posts";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -28,7 +28,7 @@ const next = posts[index - 1];
         <h1>{post.data.title}</h1>
         <p class="description">{post.data.description}</p>
         <div class="tags">
-          {post.data.tags.map((tag) => <TagPill tag={tag} />)}
+          {post.data.tags.map((tag) => <TagPill tag={tag} href={getTagHref(tag)} />)}
         </div>
       </header>
 

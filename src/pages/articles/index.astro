@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import TagPill from "../../components/TagPill.astro";
+import { getAllTags, sortPostsByDate } from "../../lib/posts";
+
+const posts = sortPostsByDate(await getCollection("posts"));
+const tags = getAllTags(posts);
+---
+
+<BaseLayout title="文章" description="Waltz 的文章列表：技术、经验、感想与灵感。">
+  <section class="section article-hero">
+    <div class="container grid-12">
+      <div class="article-title">
+        <p class="eyebrow">Archive</p>
+        <h1 class="section-title">文章</h1>
+      </div>
+      <div class="article-tags">
+        {tags.map((tag) => <TagPill tag={tag} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container article-list">
+      {posts.map((post) => <ArticleCard post={post} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .article-hero {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .article-title {
+    grid-column: span 7;
+  }
+
+  .article-tags {
+    grid-column: 8 / span 5;
+    align-self: end;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .article-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  @media (max-width: 760px) {
+    .article-title,
+    .article-tags {
+      grid-column: auto;
+    }
+
+    .article-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

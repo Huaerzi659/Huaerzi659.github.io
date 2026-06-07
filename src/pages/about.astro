@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="关于" description="关于 Waltz 和 Waltz, Then Think。">
+  <section class="section about-hero">
+    <div class="container grid-12">
+      <div class="about-title">
+        <p class="eyebrow">About Waltz</p>
+        <h1 class="section-title">关于这个地方</h1>
+      </div>
+      <div class="about-copy">
+        <p>
+          这里不是一份简历，也不是一个只放技术答案的地方。
+          我更想把它当成一个长期更新的个人索引：记录技术、经验、感想，
+          也记录那些还没有长成完整文章的灵感。
+        </p>
+        <p>
+          如果说 Waltz 是一种步伐，那这个博客就是步伐之间的停顿。
+          先跳一步，再想一想。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-section">
+    <div class="container contact-card">
+      <p class="eyebrow">Contact</p>
+      <h2>可以从这里找到我</h2>
+      <div class="contact-links">
+        <a href="https://github.com/Huaerzi659" target="_blank" rel="noreferrer">GitHub / Huaerzi659</a>
+        <a href="mailto:718231052@qq.com">718231052@qq.com</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-title {
+    grid-column: span 6;
+  }
+
+  .about-copy {
+    grid-column: 7 / span 5;
+    align-self: end;
+    color: var(--muted-ink);
+    font-size: 1.1rem;
+  }
+
+  .contact-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.55);
+    padding: 34px;
+  }
+
+  .contact-card h2 {
+    margin: 0 0 18px;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  @media (max-width: 760px) {
+    .about-title,
+    .about-copy {
+      grid-column: auto;
+    }
+
+    .contact-card {
+      padding: 24px;
+    }
+  }
+</style>

@@ -24,6 +24,12 @@ const pageTitle = title === "Waltz, Then Think" ? title : `${title} | Waltz, The
     <meta name="description" content={description} />
     <meta name="theme-color" content="#05060f" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Waltz, Then Think RSS"
+      href={new URL("rss.xml", Astro.site)}
+    />
     <title>{pageTitle}</title>
   </head>
   <body>

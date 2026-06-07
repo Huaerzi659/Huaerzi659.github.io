@@ -1,0 +1,43 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <p class="footer-title">Waltz, Then Think</p>
+    <div class="footer-links">
+      <a href="https://github.com/Huaerzi659" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="mailto:718231052@qq.com">718231052@qq.com</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding: 34px 0;
+    color: var(--muted-ink);
+  }
+
+  .footer-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .footer-title {
+    margin: 0;
+    font-family: var(--font-display);
+    color: var(--ink);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  @media (max-width: 640px) {
+    .footer-grid {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

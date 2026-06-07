@@ -1,0 +1,154 @@
+---
+import { getCollection } from "astro:content";
+import type { TagSummary } from "../../lib/posts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import TagPill from "../../components/TagPill.astro";
+import { formatDate, getTagSummaries } from "../../lib/posts";
+
+interface Props {
+  topic: TagSummary;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  const topics = getTagSummaries(posts);
+
+  return topics.map((topic) => ({
+    params: { slug: topic.slug },
+    props: { topic },
+  }));
+}
+
+const { topic } = Astro.props;
+---
+
+<BaseLayout title={`主题：${topic.tag}`} description={`Waltz 关于 ${topic.tag} 的文章。`}>
+  <section class="section topic-hero">
+    <div class="container workbench-grid">
+      <div class="topic-copy">
+        <p class="terminal-label">topic / {topic.slug}</p>
+        <h1 class="section-title">#{topic.tag}</h1>
+        <p>
+          这里收纳所有被标记为「{topic.tag}」的文章。沿着同一个信号继续读，可能会看到想法怎样慢慢变形。
+        </p>
+        <div class="topic-actions">
+          <TagPill tag={topic.tag} count={topic.count} />
+          <a class="topic-back" href="/topics/">返回主题索引</a>
+        </div>
+      </div>
+
+      <aside class="topic-status surface" aria-label={`${topic.tag} 主题统计`}>
+        <p class="terminal-label">topic stats</p>
+        <div class="status-list">
+          <div>
+            <span>records</span>
+            <strong>{topic.count}</strong>
+          </div>
+          <div>
+            <span>latest</span>
+            <strong>{formatDate(topic.latestDate)}</strong>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container article-list">
+      {topic.posts.map((post) => <ArticleCard post={post} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .topic-hero {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .topic-copy {
+    grid-column: span 7;
+  }
+
+  .topic-copy p:not(.terminal-label) {
+    max-width: 680px;
+    color: var(--muted);
+    font-size: 1.08rem;
+  }
+
+  .topic-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .topic-back {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    border: 1px solid rgba(255, 43, 214, 0.46);
+    border-radius: 999px;
+    background: rgba(255, 43, 214, 0.08);
+    padding: 3px 10px;
+    color: #ffd8f7;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1;
+    text-decoration: none;
+    text-shadow: var(--pink-glow);
+  }
+
+  .topic-back:hover {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: var(--cyan-glow);
+  }
+
+  .topic-status {
+    grid-column: 8 / span 5;
+    align-self: end;
+    padding: 20px;
+  }
+
+  .status-list {
+    display: grid;
+    gap: 10px;
+  }
+
+  .status-list div {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, rgba(0, 245, 255, 0.08), transparent),
+      var(--surface-soft);
+    padding: 16px;
+  }
+
+  .status-list span {
+    display: block;
+    color: var(--faint);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  .status-list strong {
+    display: block;
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    line-height: 1;
+  }
+
+  .article-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  @media (max-width: 760px) {
+    .topic-copy,
+    .topic-status {
+      grid-column: auto;
+    }
+  }
+</style>

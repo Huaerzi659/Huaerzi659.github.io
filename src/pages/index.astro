@@ -1,0 +1,156 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import TagPill from "../components/TagPill.astro";
+import { getAllTags, getFeaturedPosts, sortPostsByDate } from "../lib/posts";
+
+const posts = sortPostsByDate(await getCollection("posts"));
+const featured = getFeaturedPosts(posts);
+const recent = posts.slice(0, 4);
+const tags = getAllTags(posts);
+---
+
+<BaseLayout description="Waltz 的个人博客：技术、经验、感想与灵感。">
+  <section class="hero section">
+    <div class="container grid-12">
+      <div class="hero-title">
+        <p class="eyebrow">Personal Magazine / Since 2026</p>
+        <h1 class="display-title">Waltz,<br />Then Think</h1>
+      </div>
+      <div class="hero-copy">
+        <p>
+          这里记录技术、经验、感想，以及一些介于它们之间的灵感碎片。
+          先跳一步，再想一想。
+        </p>
+        <a class="hero-link" href="/articles/">读文章</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Featured</p>
+        <h2 class="section-title">精选文章</h2>
+      </div>
+      <div class="featured-grid">
+        {featured.map((post) => <ArticleCard post={post} variant="feature" />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section inspiration-band">
+    <div class="container grid-12">
+      <div class="inspiration-card">
+        <p class="eyebrow">Fragments</p>
+        <h2>把想法先存起来。</h2>
+        <p>它们可能以后变成文章，也可能只是某天路过脑内的一小段旋律。</p>
+      </div>
+      <div class="tag-board">
+        {tags.map((tag) => <TagPill tag={tag} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Recent</p>
+        <h2 class="section-title">最近更新</h2>
+      </div>
+      <div class="recent-list">
+        {recent.map((post) => <ArticleCard post={post} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero-title {
+    grid-column: span 8;
+  }
+
+  .hero-copy {
+    grid-column: 9 / span 4;
+    align-self: end;
+    color: var(--muted-ink);
+    font-size: 1.08rem;
+  }
+
+  .hero-link {
+    display: inline-flex;
+    margin-top: 18px;
+    border-bottom: 1px solid currentColor;
+    text-decoration: none;
+  }
+
+  .section-heading {
+    margin-bottom: 24px;
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .inspiration-band {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .inspiration-card {
+    grid-column: span 7;
+  }
+
+  .inspiration-card h2 {
+    margin: 0 0 14px;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4.6rem);
+    line-height: 1;
+  }
+
+  .inspiration-card p:last-child {
+    max-width: 520px;
+    color: rgba(251, 247, 239, 0.72);
+  }
+
+  .tag-board {
+    grid-column: 9 / span 4;
+    display: flex;
+    align-content: flex-end;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .inspiration-band :global(.tag-pill) {
+    border-color: rgba(251, 247, 239, 0.28);
+    color: var(--paper);
+  }
+
+  .recent-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  @media (max-width: 760px) {
+    .hero-title,
+    .hero-copy,
+    .inspiration-card,
+    .tag-board {
+      grid-column: auto;
+    }
+
+    .featured-grid,
+    .recent-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

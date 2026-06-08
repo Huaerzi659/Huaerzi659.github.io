@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "verify:rss": "node scripts/verify-rss.mjs"
+    "verify:rss": "node scripts/verify-rss.mjs",
+    "verify:motion": "node scripts/verify-motion.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",

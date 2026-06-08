@@ -18,6 +18,11 @@ const checks = [
   {
     file: "src/styles/global.css",
     tokens: [
+      "--surface-quiet",
+      "--line-muted",
+      "--scanline-opacity",
+      "--glow-soft",
+      "body::before",
       "scroll-behavior: smooth",
       ".site-shell::after",
       "--motion-short",
@@ -26,6 +31,19 @@ const checks = [
   {
     file: "src/components/Footer.astro",
     tokens: ["footer-panel::before", "footer-links a:focus-visible"],
+  },
+  {
+    file: "src/pages/index.astro",
+    tokens: ["hero-noise", "desk-panel", "topic-panel", "thinking-note"],
+  },
+  {
+    file: "src/components/ArticleCard.astro",
+    tokens: [
+      "article-card",
+      "article-card::before",
+      "article-desc",
+      "color: var(--copy)",
+    ],
   },
 ];
 

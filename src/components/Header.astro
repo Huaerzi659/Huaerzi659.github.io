@@ -54,6 +54,15 @@
     color: var(--neon-cyan);
     line-height: 1;
     text-shadow: var(--cyan-glow);
+    transition: border-color var(--motion-short) var(--ease-out), box-shadow var(--motion-short) var(--ease-out), color var(--motion-short) var(--ease-out), transform var(--motion-short) var(--ease-out);
+  }
+
+  .brand:hover .brand-mark,
+  .brand:focus-visible .brand-mark {
+    border-color: var(--neon-pink);
+    box-shadow: var(--pink-glow);
+    color: #ffd8f7;
+    transform: translateY(-1px);
   }
 
   .brand-text span {
@@ -74,7 +83,7 @@
     padding: 7px 10px;
     color: var(--muted);
     text-decoration: none;
-    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    transition: background-color var(--motion-short) var(--ease-out), border-color var(--motion-short) var(--ease-out), color var(--motion-short) var(--ease-out), text-shadow var(--motion-short) var(--ease-out);
   }
 
   .nav a:hover {

@@ -15,6 +15,8 @@ const tags = getAllTags(posts);
   <section class="section workbench-hero">
     <div class="container workbench-grid">
       <div class="identity-panel">
+        <span class="hero-hud" aria-hidden="true"></span>
+        <span class="hero-scanline" aria-hidden="true"></span>
         <p class="terminal-label">waltz.workspace / online</p>
         <h1 class="display-title">Waltz,<br />Then Think</h1>
         <p class="hero-copy">
@@ -34,7 +36,7 @@ const tags = getAllTags(posts);
       <aside class="desk-panel surface" aria-label="思考工作台摘要">
         <div class="panel-head">
           <p class="terminal-label">thinking desk</p>
-          <span class="status-dot">live</span>
+          <span class="status-dot status-pulse">live</span>
         </div>
         <div class="desk-stats">
           <div>
@@ -110,11 +112,50 @@ const tags = getAllTags(posts);
 
   .identity-panel {
     grid-column: span 7;
+    position: relative;
+    isolation: isolate;
     min-height: 520px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 22px;
+    overflow: hidden;
+  }
+
+  .identity-panel > :not(.hero-hud):not(.hero-scanline) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-hud,
+  .hero-scanline {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .hero-hud {
+    inset: 18px -10px 18px 0;
+    z-index: 0;
+    border-left: 1px solid rgba(0, 245, 255, 0.32);
+    background:
+      linear-gradient(90deg, rgba(0, 245, 255, 0.12), transparent 28%),
+      linear-gradient(180deg, rgba(255, 43, 214, 0.08), transparent 34%);
+    mask-image:
+      linear-gradient(90deg, #000 0 1px, transparent 1px),
+      linear-gradient(180deg, #000 0 1px, transparent 1px);
+    mask-size: 34px 34px;
+    opacity: 0.54;
+  }
+
+  .hero-scanline {
+    left: 0;
+    right: 12%;
+    top: 28%;
+    z-index: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.74), rgba(255, 43, 214, 0.48), transparent);
+    box-shadow: 0 0 18px rgba(0, 245, 255, 0.28);
+    transform: translateX(-120%);
   }
 
   .hero-copy {
@@ -146,6 +187,33 @@ const tags = getAllTags(posts);
     color: var(--mint);
     font-family: var(--font-mono);
     font-size: 0.74rem;
+  }
+
+  @keyframes hero-scanline-pass {
+    0% {
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+
+    18%,
+    62% {
+      opacity: 0.72;
+    }
+
+    100% {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-scanline {
+      animation: hero-scanline-pass 7s var(--ease-out) 900ms infinite;
+    }
+
+    .status-pulse {
+      animation: signal-pulse 2.8s var(--ease-out) infinite;
+    }
   }
 
   .desk-stats {

@@ -7,10 +7,12 @@
   --surface-soft: #11182b;
   --surface-strong: #16213a;
   --ink: #eaf7ff;
+  --copy: #c9d8e8;
   --muted: #9bb2c7;
   --faint: #63758b;
   --line: rgba(0, 245, 255, 0.24);
   --line-strong: rgba(0, 245, 255, 0.45);
+  --line-muted: rgba(155, 178, 199, 0.14);
   --accent: #00f5ff;
   --accent-ink: #8ffbff;
   --accent-soft: rgba(0, 245, 255, 0.12);
@@ -22,9 +24,13 @@
   --mint: #22c55e;
   --mint-soft: rgba(34, 197, 94, 0.13);
   --white: #ffffff;
-  --shadow: 0 0 32px rgba(0, 245, 255, 0.16), 0 24px 80px rgba(0, 0, 0, 0.38);
+  --surface-quiet: rgba(8, 12, 26, 0.72);
+  --surface-muted: rgba(11, 16, 32, 0.66);
+  --shadow: 0 0 24px rgba(0, 245, 255, 0.11), 0 22px 70px rgba(0, 0, 0, 0.34);
   --pink-glow: 0 0 24px rgba(255, 43, 214, 0.26);
   --cyan-glow: 0 0 22px rgba(0, 245, 255, 0.24);
+  --glow-soft: 0 0 18px rgba(0, 245, 255, 0.1);
+  --scanline-opacity: 0.14;
   --radius: 8px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --motion-short: 180ms;
@@ -41,10 +47,10 @@
 html {
   scroll-behavior: smooth;
   background:
-    radial-gradient(circle at 12% 12%, rgba(255, 43, 214, 0.15), transparent 32%),
-    radial-gradient(circle at 88% 6%, rgba(0, 245, 255, 0.12), transparent 30%),
-    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 43, 214, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 12% 12%, rgba(255, 43, 214, 0.1), transparent 32%),
+    radial-gradient(circle at 88% 6%, rgba(0, 245, 255, 0.08), transparent 30%),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 43, 214, 0.026) 1px, transparent 1px),
     var(--bg);
   background-size: auto, auto, 42px 42px, 42px 42px, auto;
   color: var(--ink);
@@ -74,7 +80,7 @@ body::before {
     transparent 4px
   );
   mix-blend-mode: screen;
-  opacity: 0.22;
+  opacity: var(--scanline-opacity);
 }
 
 ::selection {
@@ -193,12 +199,12 @@ svg {
 }
 
 .surface {
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-muted);
   border-radius: var(--radius);
   background:
-    linear-gradient(135deg, rgba(0, 245, 255, 0.07), transparent 38%),
-    rgba(11, 16, 32, 0.86);
-  box-shadow: var(--shadow);
+    linear-gradient(135deg, rgba(0, 245, 255, 0.045), transparent 38%),
+    var(--surface-quiet);
+  box-shadow: var(--glow-soft);
 }
 
 @keyframes panel-enter {
@@ -216,12 +222,12 @@ svg {
 @keyframes signal-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 rgba(34, 197, 94, 0);
+    box-shadow: 0 0 0 rgba(0, 245, 255, 0);
     opacity: 0.84;
   }
 
   50% {
-    box-shadow: 0 0 18px rgba(34, 197, 94, 0.32);
+    box-shadow: 0 0 16px rgba(0, 245, 255, 0.22);
     opacity: 1;
   }
 }
@@ -379,9 +385,9 @@ svg {
 
 @media (prefers-reduced-motion: no-preference) {
   .surface,
-  .article-card,
-  .tag-pill,
-  .desk-panel {
+  .desk-panel,
+  .topic-panel,
+  .footer-panel {
     animation: panel-enter var(--motion-medium) var(--ease-out) both;
   }
 }

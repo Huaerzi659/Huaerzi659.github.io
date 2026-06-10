@@ -69,6 +69,7 @@ const checks = [
     tokens: [
       "nav-home",
       '<a class="nav-home" href="/">首页</a>',
+      "grid-template-columns: repeat(5, minmax(0, 1fr));",
     ],
   },
   {

@@ -18,12 +18,32 @@ const pageTitle = title === "Waltz, Then Think" ? title : `${title} | Waltz, The
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="cyber">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#05060f" />
+    <script is:inline>
+      (() => {
+        const storageKey = "waltz-theme";
+        const themes = new Set(["cyber", "anime-scroll"]);
+        const colors = {
+          cyber: "#05060f",
+          "anime-scroll": "#f7efe0",
+        };
+
+        try {
+          const stored = localStorage.getItem(storageKey);
+          const theme = themes.has(stored) ? stored : "cyber";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme === "anime-scroll" ? "light" : "dark";
+          document.querySelector('meta[name="theme-color"]')?.setAttribute("content", colors[theme]);
+        } catch {
+          document.documentElement.dataset.theme = "cyber";
+        }
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="alternate"

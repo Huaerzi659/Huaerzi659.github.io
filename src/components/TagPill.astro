@@ -43,6 +43,14 @@ const { tag, href, count } = Astro.props;
     text-shadow: var(--cyan-glow);
   }
 
+  :global(:root[data-theme="anime-scroll"]) .tag-pill {
+    border-color: rgba(249, 115, 22, 0.34);
+    border-radius: 6px;
+    background: var(--stamp-bg);
+    color: #9a3412;
+    text-shadow: none;
+  }
+
   .tag-link {
     cursor: pointer;
     text-decoration: none;
@@ -60,6 +68,14 @@ const { tag, href, count } = Astro.props;
     background: rgba(255, 43, 214, 0.1);
     box-shadow: var(--pink-glow);
     color: #ffd8f7;
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .tag-link:hover,
+  :global(:root[data-theme="anime-scroll"]) .tag-link:focus-visible {
+    border-color: rgba(15, 139, 179, 0.56);
+    background: rgba(15, 139, 179, 0.1);
+    box-shadow: 0 10px 22px rgba(15, 139, 179, 0.14);
+    color: #0f5f8a;
   }
 
   .tag-sheen {
@@ -85,5 +101,10 @@ const { tag, href, count } = Astro.props;
     border-left: 1px solid rgba(0, 245, 255, 0.24);
     padding-left: 6px;
     color: var(--accent-ink);
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .tag-count {
+    border-left-color: rgba(249, 115, 22, 0.26);
+    color: #0f5f8a;
   }
 </style>

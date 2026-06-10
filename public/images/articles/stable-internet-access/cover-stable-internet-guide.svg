@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="788" viewBox="0 0 1400 788" role="img" aria-labelledby="title desc">
+  <title id="title">如何优雅稳定地科学上网</title>
+  <desc id="desc">一台电脑和手机连接到世界地图上的多个节点，表现稳定、清晰、可控的网络代理配置。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef9f7"/>
+      <stop offset="0.55" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#eaf3f7"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f9189"/>
+      <stop offset="1" stop-color="#4d7dd8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#173a4b" flood-opacity="0.18"/>
+    </filter>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1400" height="788" rx="36" fill="url(#bg)"/>
+  <g opacity="0.32" fill="none" stroke="#8fb6c1" stroke-width="2">
+    <path d="M104 255C196 193 293 181 385 232S559 316 680 253s207-104 330-46 195 64 290-6"/>
+    <path d="M92 505c112-78 247-64 346 9s196 96 335 16 251-117 409-39"/>
+    <path d="M164 150h1072M164 638h1072M247 92v604M503 92v604M760 92v604M1016 92v604M1272 92v604"/>
+  </g>
+  <g opacity="0.5" fill="#d4e5ea">
+    <path d="M224 217c57-34 105-34 145-3 32 25 61 25 101 4 20-10 39-7 56 8 25 22 55 24 92 6 62-31 114-25 156 16 34 33 73 38 117 17 44-21 82-18 115 7 30 23 62 27 96 12 47-21 91-16 132 14v20H224z"/>
+    <path d="M143 470c84-46 162-42 235 12 37 27 80 29 128 7 55-25 102-18 142 21 40 39 87 45 141 18 61-30 115-23 162 22 33 32 75 36 126 11 76-38 140-29 194 25H143z"/>
+  </g>
+  <g stroke-linecap="round" stroke-width="5" fill="none">
+    <path d="M251 332C390 238 512 260 616 392S831 542 1028 383s290-150 347-99" stroke="#23c9bd" opacity="0.8"/>
+    <path d="M128 442c181-103 326-96 436 19s233 124 369 28 272-99 409 8" stroke="#f4a33d" opacity="0.78"/>
+    <path d="M427 184c173 69 238 176 194 321" stroke="#83a4e6" opacity="0.62" stroke-dasharray="13 18"/>
+  </g>
+  <g filter="url(#glow)">
+    <circle cx="251" cy="332" r="14" fill="#23c9bd"/>
+    <circle cx="616" cy="392" r="14" fill="#23c9bd"/>
+    <circle cx="1028" cy="383" r="14" fill="#23c9bd"/>
+    <circle cx="128" cy="442" r="13" fill="#f4a33d"/>
+    <circle cx="564" cy="461" r="13" fill="#f4a33d"/>
+    <circle cx="933" cy="489" r="13" fill="#f4a33d"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="384" y="286" width="560" height="330" rx="28" fill="#16213a"/>
+    <rect x="416" y="320" width="496" height="236" rx="18" fill="#f8fcff"/>
+    <rect x="442" y="348" width="142" height="180" rx="16" fill="url(#screen)"/>
+    <circle cx="478" cy="385" r="9" fill="#a8fff8"/>
+    <path d="M510 385h44M478 425h78M478 462h62M478 498h91" stroke="#c7f4ef" stroke-width="10" stroke-linecap="round"/>
+    <rect x="622" y="358" width="246" height="72" rx="18" fill="#eef8f6"/>
+    <rect x="622" y="456" width="246" height="72" rx="18" fill="#eef3ff"/>
+    <path d="M654 394h116M654 492h148" stroke="#23a99c" stroke-width="13" stroke-linecap="round"/>
+    <path d="M800 394h44M826 492h28" stroke="#c6d3da" stroke-width="13" stroke-linecap="round"/>
+    <path d="M352 620h624l-54 68H406z" fill="#cdd9df"/>
+    <path d="M461 640h404" stroke="#8da3ad" stroke-width="8" stroke-linecap="round" opacity="0.45"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="940" y="392" width="154" height="274" rx="30" fill="#182139"/>
+    <rect x="958" y="426" width="118" height="206" rx="20" fill="#fbfeff"/>
+    <rect x="974" y="452" width="86" height="54" rx="14" fill="#eaf8f6"/>
+    <circle cx="995" cy="480" r="12" fill="#23c9bd"/>
+    <path d="M1018 470h29M1018 490h22" stroke="#74bdb5" stroke-width="7" stroke-linecap="round"/>
+    <path d="M982 536h64M982 566h48M982 596h58" stroke="#cbd7dd" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g font-family="Arial, 'Microsoft YaHei', sans-serif">
+    <rect x="92" y="88" width="350" height="112" rx="26" fill="#ffffff" opacity="0.9"/>
+    <text x="126" y="136" font-size="28" font-weight="700" fill="#12323d">稳定不是玄学</text>
+    <text x="126" y="174" font-size="19" fill="#5b737a">订阅、节点、客户端，各司其职</text>
+    <rect x="1054" y="94" width="236" height="72" rx="20" fill="#12323d" opacity="0.92"/>
+    <text x="1172" y="139" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">规则模式优先</text>
+  </g>
+</svg>

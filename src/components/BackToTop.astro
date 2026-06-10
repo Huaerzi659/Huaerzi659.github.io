@@ -1,64 +1,158 @@
-<button class="back-to-top" type="button" aria-label="回到页面顶部" data-visible="false">
-  <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-    <path d="M12 5 5.5 11.5l1.4 1.4L11 8.8V20h2V8.8l4.1 4.1 1.4-1.4L12 5Z" />
-  </svg>
-</button>
+<div class="corner-actions" data-visible="false" role="group" aria-label="页面快捷操作">
+  <button
+    class="theme-toggle"
+    type="button"
+    aria-label="切换到轻动漫卷轴风格"
+    data-theme-toggle
+  >
+    <span class="theme-toggle-icon" aria-hidden="true">卷</span>
+  </button>
+  <button class="back-to-top" type="button" aria-label="回到页面顶部" data-back-to-top>
+    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+      <path d="M12 5 5.5 11.5l1.4 1.4L11 8.8V20h2V8.8l4.1 4.1 1.4-1.4L12 5Z" />
+    </svg>
+  </button>
+</div>
 
 <script>
-  const button = document.querySelector(".back-to-top");
+  const storageKey = "waltz-theme";
+  const actions = document.querySelector(".corner-actions");
+  const themeToggle = document.querySelector("[data-theme-toggle]");
+  const backButton = document.querySelector("[data-back-to-top]");
   const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const threshold = 360;
-
-  const updateVisibility = () => {
-    button?.setAttribute("data-visible", String(window.scrollY > threshold));
+  const themes = {
+    cyber: {
+      next: "anime-scroll",
+      label: "切换到轻动漫卷轴风格",
+      icon: "卷",
+    },
+    "anime-scroll": {
+      next: "cyber",
+      label: "切换到暗色赛博朋克风格",
+      icon: "霓",
+    },
+  };
+  const themeColors = {
+    cyber: "#05060f",
+    "anime-scroll": "#f7efe0",
   };
 
-  button?.addEventListener("click", () => {
+  const updateThemeColor = (theme) => {
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", themeColors[theme] ?? themeColors.cyber);
+  };
+
+  const updateThemeButton = (theme) => {
+    const config = themes[theme] ?? themes.cyber;
+    const icon = themeToggle?.querySelector(".theme-toggle-icon");
+    themeToggle?.setAttribute("aria-label", config.label);
+    themeToggle?.setAttribute("title", config.label);
+    if (icon) {
+      icon.textContent = config.icon;
+    }
+  };
+
+  const setTheme = (theme) => {
+    const nextTheme = themes[theme] ? theme : "cyber";
+    document.documentElement.dataset.theme = nextTheme;
+    document.documentElement.style.colorScheme = nextTheme === "anime-scroll" ? "light" : "dark";
+
+    try {
+      localStorage.setItem(storageKey, nextTheme);
+    } catch {
+      // The selected theme still applies for this page view when storage is unavailable.
+    }
+
+    updateThemeColor(nextTheme);
+    updateThemeButton(nextTheme);
+  };
+
+  const getCurrentTheme = () => {
+    const current = document.documentElement.dataset.theme;
+    return themes[current] ? current : "cyber";
+  };
+
+  const updateVisibility = () => {
+    actions?.setAttribute("data-visible", String(window.scrollY > threshold));
+  };
+
+  themeToggle?.addEventListener("click", () => {
+    setTheme(themes[getCurrentTheme()].next);
+  });
+
+  backButton?.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
       behavior: motionQuery.matches ? "auto" : "smooth",
     });
   });
 
+  updateThemeButton(getCurrentTheme());
   updateVisibility();
   window.addEventListener("scroll", updateVisibility, { passive: true });
 </script>
 
 <style>
-  .back-to-top {
+  .corner-actions {
     position: fixed;
     right: max(18px, env(safe-area-inset-right));
     bottom: max(18px, env(safe-area-inset-bottom));
     z-index: 20;
+    display: grid;
+    width: 48px;
+    overflow: hidden;
+    border: 1px solid var(--corner-action-border);
+    border-radius: var(--radius);
+    background: var(--corner-action-bg);
+    box-shadow: var(--corner-action-shadow);
+    color: var(--corner-action-ink);
+    transition: border-color var(--motion-short) var(--ease-out), box-shadow var(--motion-short) var(--ease-out), color var(--motion-short) var(--ease-out), transform var(--motion-short) var(--ease-out);
+  }
+
+  .corner-actions:hover,
+  .corner-actions:focus-within {
+    border-color: var(--corner-action-hover-border);
+    box-shadow: var(--corner-action-hover-shadow);
+    color: var(--corner-action-hover-ink);
+  }
+
+  .corner-actions button {
     display: inline-grid;
     width: 46px;
-    height: 46px;
+    height: 44px;
     place-items: center;
-    border: 1px solid rgba(0, 245, 255, 0.52);
-    border-radius: var(--radius);
-    background:
-      linear-gradient(135deg, rgba(0, 245, 255, 0.18), rgba(255, 43, 214, 0.12)),
-      rgba(5, 6, 15, 0.9);
-    box-shadow: var(--cyan-glow);
-    color: var(--neon-cyan);
+    border: 0;
+    background: transparent;
+    color: inherit;
     cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(10px);
-    transition: opacity var(--motion-short) var(--ease-out), transform var(--motion-short) var(--ease-out), border-color var(--motion-short) var(--ease-out), box-shadow var(--motion-short) var(--ease-out), color var(--motion-short) var(--ease-out);
   }
 
-  .back-to-top[data-visible="true"] {
+  .theme-toggle {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .theme-toggle-icon {
+    display: inline-grid;
+    width: 24px;
+    height: 24px;
+    place-items: center;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .back-to-top {
+    opacity: 0.46;
+    transform: translateY(1px);
+    transition: opacity var(--motion-short) var(--ease-out), transform var(--motion-short) var(--ease-out);
+  }
+
+  .corner-actions[data-visible="true"] .back-to-top {
     opacity: 1;
-    pointer-events: auto;
     transform: translateY(0);
-  }
-
-  .back-to-top:hover,
-  .back-to-top:focus-visible {
-    border-color: rgba(255, 43, 214, 0.72);
-    box-shadow: var(--pink-glow);
-    color: #ffd8f7;
   }
 
   .back-to-top svg {
@@ -67,10 +161,21 @@
     fill: currentColor;
   }
 
+  :global(:root[data-theme="anime-scroll"]) .theme-toggle-icon {
+    border-radius: 6px;
+    background: var(--stamp-bg);
+  }
+
   @media (max-width: 560px) {
-    .back-to-top {
+    .corner-actions {
       right: 14px;
       bottom: 14px;
+      width: 44px;
+    }
+
+    .corner-actions button {
+      width: 42px;
+      height: 40px;
     }
   }
 </style>

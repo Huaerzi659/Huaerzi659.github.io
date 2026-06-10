@@ -17,6 +17,10 @@ const tags = getAllTags(posts);
       <div class="identity-panel">
         <span class="hero-hud hero-noise" aria-hidden="true"></span>
         <span class="hero-scanline" aria-hidden="true"></span>
+        <span class="anime-mascot" aria-label="原创看板人物" role="img">
+          <span class="mascot-scroll" aria-hidden="true"></span>
+          <span class="mascot-figure" aria-hidden="true"></span>
+        </span>
         <p class="terminal-label">waltz.workspace / online</p>
         <h1 class="display-title">Waltz,<br />Then Think</h1>
         <p class="hero-copy">
@@ -122,7 +126,7 @@ const tags = getAllTags(posts);
     overflow: hidden;
   }
 
-  .identity-panel > :not(.hero-hud):not(.hero-scanline) {
+  .identity-panel > :not(.hero-hud):not(.hero-scanline):not(.anime-mascot) {
     position: relative;
     z-index: 1;
   }
@@ -164,6 +168,92 @@ const tags = getAllTags(posts);
     color: var(--muted);
     font-size: clamp(1.08rem, 2vw, 1.28rem);
     line-height: 1.75;
+  }
+
+  .anime-mascot {
+    position: absolute;
+    right: 2%;
+    bottom: 18px;
+    z-index: 0;
+    display: none;
+    width: min(240px, 34vw);
+    aspect-ratio: 3 / 4;
+    opacity: 0.26;
+    pointer-events: none;
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .anime-mascot {
+    display: block;
+  }
+
+  .mascot-scroll,
+  .mascot-figure {
+    position: absolute;
+    inset: 0;
+  }
+
+  .mascot-scroll {
+    border: 2px solid rgba(26, 45, 76, 0.42);
+    border-radius: 42% 42% 10px 10px;
+    background:
+      radial-gradient(circle at 28% 14%, rgba(249, 115, 22, 0.2) 0 7px, transparent 8px),
+      linear-gradient(135deg, rgba(255, 250, 240, 0.74), rgba(243, 230, 208, 0.54));
+    box-shadow: 0 18px 40px rgba(57, 42, 22, 0.16);
+    transform: rotate(-4deg);
+  }
+
+  .mascot-scroll::before,
+  .mascot-scroll::after {
+    content: "";
+    position: absolute;
+    left: 14%;
+    right: 14%;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(26, 45, 76, 0.28);
+  }
+
+  .mascot-scroll::before {
+    top: 18%;
+  }
+
+  .mascot-scroll::after {
+    bottom: 16%;
+  }
+
+  .mascot-figure {
+    transform: translateY(7%) rotate(2deg);
+  }
+
+  .mascot-figure::before {
+    content: "";
+    position: absolute;
+    left: 28%;
+    top: 12%;
+    width: 44%;
+    aspect-ratio: 1;
+    border: 3px solid rgba(22, 32, 47, 0.62);
+    border-radius: 50%;
+    background:
+      linear-gradient(135deg, rgba(255, 250, 240, 0.92), rgba(249, 115, 22, 0.18)),
+      var(--surface);
+    box-shadow: 0 8px 0 rgba(15, 139, 179, 0.18);
+  }
+
+  .mascot-figure::after {
+    content: "";
+    position: absolute;
+    left: 22%;
+    right: 16%;
+    bottom: 14%;
+    height: 48%;
+    border: 3px solid rgba(22, 32, 47, 0.58);
+    border-radius: 44% 44% 12% 12%;
+    background:
+      linear-gradient(130deg, rgba(15, 139, 179, 0.56), transparent 38%),
+      linear-gradient(42deg, rgba(249, 115, 22, 0.52), transparent 48%),
+      rgba(255, 250, 240, 0.9);
+    clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
   }
 
   .desk-panel {
@@ -332,6 +422,12 @@ const tags = getAllTags(posts);
     border-bottom: 1px solid var(--line-muted);
   }
 
+  :global(:root[data-theme="anime-scroll"]) .focus-section {
+    background:
+      linear-gradient(90deg, rgba(249, 115, 22, 0.08), transparent 45%),
+      rgba(255, 250, 240, 0.52);
+  }
+
   .section-heading {
     margin-bottom: 20px;
   }
@@ -353,6 +449,26 @@ const tags = getAllTags(posts);
     display: grid;
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
     gap: 22px;
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .topic-panel,
+  :global(:root[data-theme="anime-scroll"]) .desk-panel {
+    background:
+      linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(15, 139, 179, 0.055)),
+      var(--surface-quiet);
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .hero-hud {
+    border-left-color: rgba(26, 45, 76, 0.2);
+    background:
+      linear-gradient(90deg, rgba(249, 115, 22, 0.1), transparent 28%),
+      linear-gradient(180deg, rgba(15, 139, 179, 0.07), transparent 34%);
+    opacity: 0.22;
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .hero-scanline {
+    background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.48), rgba(15, 139, 179, 0.28), transparent);
+    box-shadow: 0 0 14px rgba(249, 115, 22, 0.12);
   }
 
   .tag-board {
@@ -390,6 +506,13 @@ const tags = getAllTags(posts);
   }
 
   @media (max-width: 560px) {
+    .anime-mascot {
+      right: 4px;
+      bottom: 4px;
+      width: 86px;
+      opacity: 0.2;
+    }
+
     .desk-list a {
       grid-template-columns: 1fr;
       gap: 2px;

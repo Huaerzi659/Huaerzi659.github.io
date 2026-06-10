@@ -105,6 +105,20 @@ const { topic } = Astro.props;
     box-shadow: var(--cyan-glow);
   }
 
+  :global(:root[data-theme="anime-scroll"]) .topic-back {
+    border-color: rgba(249, 115, 22, 0.34);
+    border-radius: 6px;
+    background: var(--stamp-bg);
+    color: #9a3412;
+    text-shadow: none;
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .topic-back:hover {
+    border-color: rgba(15, 139, 179, 0.56);
+    color: #0f5f8a;
+    box-shadow: 4px 4px 0 rgba(249, 115, 22, 0.12);
+  }
+
   .topic-status {
     grid-column: 8 / span 5;
     align-self: end;

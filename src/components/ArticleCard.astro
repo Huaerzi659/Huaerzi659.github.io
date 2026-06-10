@@ -52,6 +52,32 @@ const href = `/articles/${post.id}/`;
     pointer-events: none;
   }
 
+  :global(:root[data-theme="anime-scroll"]) .article-card {
+    background:
+      linear-gradient(135deg, rgba(249, 115, 22, 0.05), transparent 46%),
+      var(--surface-quiet);
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .article-card::before {
+    background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.34), transparent);
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .article-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: repeating-linear-gradient(
+      118deg,
+      transparent 0 14px,
+      rgba(249, 115, 22, var(--speedline-opacity)) 14px 15px,
+      transparent 15px 28px
+    );
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--motion-short) var(--ease-out);
+  }
+
   .article-card:hover,
   .article-card:focus-within {
     border-color: rgba(255, 43, 214, 0.52);
@@ -60,6 +86,20 @@ const href = `/articles/${post.id}/`;
       rgba(11, 16, 32, 0.88);
     box-shadow: var(--pink-glow);
     transform: translateY(-2px);
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .article-card:hover,
+  :global(:root[data-theme="anime-scroll"]) .article-card:focus-within {
+    border-color: rgba(249, 115, 22, 0.55);
+    background:
+      linear-gradient(135deg, rgba(249, 115, 22, 0.1), transparent 50%),
+      var(--surface);
+    box-shadow: 0 14px 34px rgba(57, 42, 22, 0.16);
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .article-card:hover::after,
+  :global(:root[data-theme="anime-scroll"]) .article-card:focus-within::after {
+    opacity: 1;
   }
 
   .article-link {
@@ -90,11 +130,23 @@ const href = `/articles/${post.id}/`;
     transform: translateX(-140%) skewX(-18deg);
   }
 
+  :global(:root[data-theme="anime-scroll"]) .card-sheen {
+    display: none;
+    animation: none;
+    opacity: 0;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     .article-card:hover .card-sheen,
     .article-card:focus-within .card-sheen {
       animation: sheen-pass 620ms var(--ease-out);
       opacity: 1;
+    }
+
+    :global(:root[data-theme="anime-scroll"]) .article-card:hover .card-sheen,
+    :global(:root[data-theme="anime-scroll"]) .article-card:focus-within .card-sheen {
+      animation: none;
+      opacity: 0;
     }
   }
 
@@ -125,6 +177,10 @@ const href = `/articles/${post.id}/`;
     line-height: 1.15;
     letter-spacing: 0;
     text-shadow: 0 0 18px rgba(0, 245, 255, 0.12);
+  }
+
+  :global(:root[data-theme="anime-scroll"]) h2 {
+    text-shadow: none;
   }
 
   .feature h2 {

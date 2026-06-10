@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">机场、订阅、节点、客户端关系图</title>
+  <desc id="desc">展示服务商提供订阅链接，订阅同步节点，客户端选择节点并让浏览器或应用走规则代理。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef8f6"/>
+      <stop offset="1" stop-color="#f7fbff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#174151" flood-opacity="0.13"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2f6f7f"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="680" rx="32" fill="url(#bg)"/>
+  <g fill="none" stroke="#c9dde2" stroke-width="2" opacity="0.75">
+    <path d="M88 520 C220 400, 280 570, 418 450 S670 320, 810 410 S1000 510, 1120 365"/>
+    <path d="M120 170 C245 260, 340 120, 480 220 S760 330, 910 210 S1030 130, 1125 220"/>
+  </g>
+  <text x="600" y="82" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="36" font-weight="700" fill="#12323d">先把三个东西分清楚</text>
+  <text x="600" y="126" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="20" fill="#53717a">服务商负责线路，订阅负责同步，客户端负责使用</text>
+
+  <g filter="url(#shadow)">
+    <rect x="82" y="214" width="260" height="250" rx="24" fill="#ffffff"/>
+    <circle cx="132" cy="272" r="27" fill="#fff1dd"/>
+    <path d="M116 281h32l-6 24h-20z" fill="#f4a33d"/>
+    <path d="M118 277c8-30 47-30 56 0" fill="none" stroke="#f4a33d" stroke-width="8" stroke-linecap="round"/>
+    <text x="132" y="348" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="28" font-weight="700" fill="#12323d">机场 / 服务商</text>
+    <text x="132" y="388" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="18" fill="#5d747c">提供套餐、流量、线路</text>
+    <text x="132" y="420" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="18" fill="#5d747c">后台里复制订阅链接</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="470" y="214" width="260" height="250" rx="24" fill="#ffffff"/>
+    <rect x="522" y="258" width="156" height="108" rx="18" fill="#ecfbf8" stroke="#80cabc" stroke-width="3"/>
+    <path d="M548 290h104M548 320h78M548 350h96" stroke="#2f9a8c" stroke-width="10" stroke-linecap="round"/>
+    <text x="600" y="408" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="28" font-weight="700" fill="#12323d">订阅链接</text>
+    <text x="600" y="448" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="18" fill="#5d747c">像一张自动更新的线路清单</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="858" y="214" width="260" height="250" rx="24" fill="#ffffff"/>
+    <rect x="918" y="252" width="140" height="96" rx="16" fill="#edf4ff" stroke="#8db0e8" stroke-width="3"/>
+    <circle cx="946" cy="300" r="8" fill="#4d7dd8"/>
+    <circle cx="988" cy="282" r="8" fill="#4d7dd8"/>
+    <circle cx="1030" cy="312" r="8" fill="#4d7dd8"/>
+    <path d="M946 300l42-18 42 30" stroke="#4d7dd8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="988" y="408" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="28" font-weight="700" fill="#12323d">客户端</text>
+    <text x="988" y="448" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="18" fill="#5d747c">导入订阅，选择节点，开启代理</text>
+  </g>
+
+  <path d="M354 338 H452" stroke="#2f6f7f" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M742 338 H840" stroke="#2f6f7f" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="330" y="524" width="540" height="64" rx="20" fill="#12323d"/>
+    <text x="600" y="563" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="22" font-weight="700" fill="#ffffff">一句话：买服务，复制订阅，交给客户端管理</text>
+  </g>
+</svg>

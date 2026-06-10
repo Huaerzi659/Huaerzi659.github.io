@@ -4,5 +4,7 @@ dist/
 .astro-config/
 work/
 outputs/
+.codex/
+.superpowers/
 
 *.log

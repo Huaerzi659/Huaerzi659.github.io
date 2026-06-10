@@ -5,6 +5,7 @@
       <span class="brand-text">Waltz<span>/think</span></span>
     </a>
     <nav class="nav" aria-label="主导航">
+      <a class="nav-home" href="/">首页</a>
       <a href="/articles/">文章</a>
       <a href="/topics/">主题</a>
       <a href="/about/">关于</a>
@@ -21,6 +22,11 @@
     border-bottom: 1px solid rgba(0, 245, 255, 0.24);
     background: rgba(5, 6, 15, 0.86);
     backdrop-filter: blur(14px);
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .site-header {
+    border-bottom-color: rgba(26, 45, 76, 0.24);
+    background: rgba(255, 250, 240, 0.88);
   }
 
   .header-inner {
@@ -65,9 +71,29 @@
     transform: translateY(-1px);
   }
 
+  :global(:root[data-theme="anime-scroll"]) .brand-mark {
+    border-color: rgba(249, 115, 22, 0.62);
+    background: var(--stamp-bg);
+    box-shadow: 0 8px 18px rgba(249, 115, 22, 0.16);
+    color: #9a3412;
+    text-shadow: none;
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .brand:hover .brand-mark,
+  :global(:root[data-theme="anime-scroll"]) .brand:focus-visible .brand-mark {
+    border-color: rgba(15, 139, 179, 0.6);
+    box-shadow: 0 10px 22px rgba(15, 139, 179, 0.16);
+    color: #0f5f8a;
+  }
+
   .brand-text span {
     color: var(--neon-pink);
     text-shadow: var(--pink-glow);
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .brand-text span {
+    color: #9a3412;
+    text-shadow: none;
   }
 
   .nav {
@@ -93,6 +119,13 @@
     text-shadow: var(--cyan-glow);
   }
 
+  :global(:root[data-theme="anime-scroll"]) .nav a:hover {
+    border-color: rgba(249, 115, 22, 0.38);
+    background: rgba(249, 115, 22, 0.1);
+    color: #9a3412;
+    text-shadow: none;
+  }
+
   @media (max-width: 560px) {
     .header-inner {
       align-items: stretch;
@@ -102,7 +135,7 @@
 
     .nav {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
     .nav a {

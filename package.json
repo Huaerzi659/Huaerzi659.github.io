@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "verify:content": "node scripts/verify-content.mjs",
     "verify:rss": "node scripts/verify-rss.mjs",
     "verify:motion": "node scripts/verify-motion.mjs",
     "verify:ux": "node scripts/verify-ux.mjs"

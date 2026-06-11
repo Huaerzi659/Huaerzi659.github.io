@@ -453,32 +453,164 @@ html[data-theme="anime-scroll"] .stat-line span {
   margin: 0 auto;
   color: #dbeafe;
   font-size: 1.06rem;
-  line-height: 1.78;
+  line-height: 1.82;
 }
 
 html[data-theme="anime-scroll"] .prose {
   color: var(--copy);
 }
 
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
+}
+
 .prose h2,
-.prose h3 {
-  margin-top: 2.2em;
+.prose h3,
+.prose h4 {
   color: var(--ink);
   font-family: var(--font-display);
   line-height: 1.25;
 }
 
+.prose h2 {
+  margin: 2.4em 0 0.8em;
+  border-bottom: 1px solid rgba(0, 245, 255, 0.22);
+  padding-bottom: 0.35em;
+  font-size: clamp(1.55rem, 3vw, 2.1rem);
+}
+
+.prose h3 {
+  margin: 2em 0 0.65em;
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+}
+
+.prose h4 {
+  margin: 1.7em 0 0.45em;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+html[data-theme="anime-scroll"] .prose h2 {
+  border-bottom-color: rgba(26, 45, 76, 0.18);
+}
+
 .prose p {
-  margin: 1.2em 0;
+  margin: 1.18em 0;
+}
+
+.prose a {
+  color: var(--neon-cyan);
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 245, 255, 0.42);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.prose a:hover {
+  color: var(--neon-pink);
+  text-decoration-color: rgba(255, 43, 214, 0.55);
+}
+
+html[data-theme="anime-scroll"] .prose a {
+  color: #a13b12;
+  text-decoration-color: rgba(249, 115, 22, 0.36);
+}
+
+html[data-theme="anime-scroll"] .prose a:hover {
+  color: #0f5f86;
+  text-decoration-color: rgba(15, 139, 179, 0.38);
 }
 
 .prose ul,
 .prose ol {
+  margin: 1.05em 0;
   padding-left: 1.3em;
 }
 
 .prose li + li {
   margin-top: 0.35em;
+}
+
+.prose blockquote {
+  margin: 1.7em 0;
+  border-left: 3px solid rgba(0, 245, 255, 0.5);
+  background: rgba(0, 245, 255, 0.06);
+  box-shadow: inset 16px 0 28px rgba(0, 245, 255, 0.04);
+  padding: 0.9em 1.1em;
+  color: #c7d2fe;
+}
+
+.prose blockquote p {
+  margin: 0.65em 0;
+}
+
+html[data-theme="anime-scroll"] .prose blockquote {
+  border-left-color: rgba(249, 115, 22, 0.72);
+  background: rgba(249, 115, 22, 0.08);
+  box-shadow: 4px 4px 0 rgba(26, 45, 76, 0.06);
+  color: var(--copy);
+}
+
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 2em auto;
+  border: 1px solid rgba(0, 245, 255, 0.24);
+  border-radius: var(--radius);
+  background: rgba(2, 6, 23, 0.62);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.26);
+}
+
+html[data-theme="anime-scroll"] .prose img {
+  border-color: rgba(26, 45, 76, 0.18);
+  background: rgba(255, 250, 240, 0.72);
+  box-shadow: 6px 6px 0 rgba(26, 45, 76, 0.08);
+}
+
+.prose table {
+  display: block;
+  width: 100%;
+  margin: 1.8em 0;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-radius: var(--radius);
+  background: rgba(2, 6, 23, 0.38);
+}
+
+.prose th,
+.prose td {
+  border-bottom: 1px solid rgba(0, 245, 255, 0.16);
+  padding: 0.7em 0.9em;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.prose th {
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.prose tr:last-child td {
+  border-bottom: 0;
+}
+
+html[data-theme="anime-scroll"] .prose table {
+  border-color: rgba(26, 45, 76, 0.18);
+  background: rgba(255, 250, 240, 0.68);
+  box-shadow: 4px 4px 0 rgba(26, 45, 76, 0.05);
+}
+
+html[data-theme="anime-scroll"] .prose th,
+html[data-theme="anime-scroll"] .prose td {
+  border-bottom-color: rgba(26, 45, 76, 0.12);
 }
 
 .prose code {
@@ -510,7 +642,7 @@ html[data-theme="anime-scroll"] .prose code {
 html[data-theme="anime-scroll"] .prose pre {
   border-color: rgba(26, 45, 76, 0.28);
   background: #172033;
-  box-shadow: inset 0 0 24px rgba(15, 139, 179, 0.08);
+  box-shadow: inset 0 0 18px rgba(15, 139, 179, 0.06);
   color: #f8fafc;
 }
 
@@ -519,6 +651,16 @@ html[data-theme="anime-scroll"] .prose pre {
   background: transparent;
   color: inherit;
   padding: 0;
+}
+
+.prose hr {
+  margin: 2.3em 0;
+  border: 0;
+  border-top: 1px solid rgba(0, 245, 255, 0.22);
+}
+
+html[data-theme="anime-scroll"] .prose hr {
+  border-top-color: rgba(26, 45, 76, 0.18);
 }
 
 @media (max-width: 760px) {

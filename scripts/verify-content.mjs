@@ -60,6 +60,29 @@ function parseInlineArray(value = "") {
     .filter(Boolean);
 }
 
+function checkLocalImagePath(file, src, label = "local image") {
+  if (!src.startsWith("/")) {
+    return;
+  }
+
+  if (!src.startsWith(imageRootPrefix)) {
+    addFailure(file, `${label} ${src} should live under ${imageRootPrefix}`);
+    return;
+  }
+
+  const localPath = path.join(root, "public", src.replace(/^\//, ""));
+
+  if (!existsSync(localPath)) {
+    addFailure(file, `${label} does not exist: ${src}`);
+  }
+
+  const imageFile = path.basename(src);
+
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*\.(svg|png|jpg|jpeg|webp|gif)$/.test(imageFile)) {
+    addFailure(file, `${label} filename should use lowercase kebab-case: ${imageFile}`);
+  }
+}
+
 function checkFrontmatter(file, data) {
   if (!data) {
     addFailure(file, "missing frontmatter block");
@@ -77,6 +100,7 @@ function checkFrontmatter(file, data) {
   const date = unquote(data.date);
   const tags = parseInlineArray(data.tags);
   const featured = data.featured;
+  const image = unquote(data.image);
 
   if (title && (title.length < 2 || title.length > 40)) {
     addFailure(file, "title should be between 2 and 40 characters");
@@ -107,6 +131,10 @@ function checkFrontmatter(file, data) {
     if (!allowedTags.has(tag)) {
       addFailure(file, `unknown tag "${tag}". Allowed tags: ${Array.from(allowedTags).join(", ")}`);
     }
+  }
+
+  if (image) {
+    checkLocalImagePath(file, image, "frontmatter image");
   }
 }
 
@@ -150,26 +178,7 @@ function checkImages(file, body) {
       addFailure(file, `image ${src} is missing alt text`);
     }
 
-    if (!src.startsWith("/")) {
-      continue;
-    }
-
-    if (!src.startsWith(imageRootPrefix)) {
-      addFailure(file, `local image ${src} should live under ${imageRootPrefix}`);
-      continue;
-    }
-
-    const localPath = path.join(root, "public", src.replace(/^\//, ""));
-
-    if (!existsSync(localPath)) {
-      addFailure(file, `local image does not exist: ${src}`);
-    }
-
-    const imageFile = path.basename(src);
-
-    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*\.(svg|png|jpg|jpeg|webp|gif)$/.test(imageFile)) {
-      addFailure(file, `image filename should use lowercase kebab-case: ${imageFile}`);
-    }
+    checkLocalImagePath(file, src);
   }
 }
 

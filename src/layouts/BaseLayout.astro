@@ -7,14 +7,70 @@ import BackToTop from "../components/BackToTop.astro";
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  image?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
+  publishedTime?: Date | string;
+  tags?: string[];
 }
 
 const {
   title = "Waltz, Then Think",
   description = "Waltz 的个人博客：技术、经验、感想与灵感。",
+  canonical,
+  image = "/images/og-default.png",
+  imageAlt,
+  type = "website",
+  publishedTime,
+  tags = [],
 } = Astro.props;
 
+const siteName = "Waltz, Then Think";
 const pageTitle = title === "Waltz, Then Think" ? title : `${title} | Waltz, Then Think`;
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+const siteUrl = new URL("/", Astro.site);
+const publishedIso = publishedTime ? new Date(publishedTime).toISOString() : undefined;
+const keywords = tags.length > 0 ? tags.join(", ") : undefined;
+const resolvedImageAlt = imageAlt ?? `${siteName} 分享图`;
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteName,
+    description: "Waltz 的个人博客：技术、经验、感想与灵感。",
+    url: siteUrl.href,
+    inLanguage: "zh-CN",
+    author: {
+      "@type": "Person",
+      name: "Waltz",
+      url: siteUrl.href,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": type === "article" ? "BlogPosting" : "WebPage",
+    headline: pageTitle,
+    name: pageTitle,
+    description,
+    url: canonicalUrl.href,
+    image: imageUrl.href,
+    inLanguage: "zh-CN",
+    author: {
+      "@type": "Person",
+      name: "Waltz",
+      url: siteUrl.href,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: siteUrl.href,
+    },
+    ...(publishedIso ? { datePublished: publishedIso } : {}),
+    ...(keywords ? { keywords } : {}),
+  },
+];
 ---
 
 <!doctype html>
@@ -23,6 +79,9 @@ const pageTitle = title === "Waltz, Then Think" ? title : `${title} | Waltz, The
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="author" content="Waltz" />
+    <meta name="robots" content="index, follow" />
+    {keywords && <meta name="keywords" content={keywords} />}
     <meta name="theme-color" content="#05060f" />
     <script is:inline>
       (() => {
@@ -45,13 +104,30 @@ const pageTitle = title === "Waltz, Then Think" ? title : `${title} | Waltz, The
       })();
     </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl.href} />
     <link
       rel="alternate"
       type="application/rss+xml"
       title="Waltz, Then Think RSS"
       href={new URL("rss.xml", Astro.site)}
     />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:image" content={imageUrl.href} />
+    <meta property="og:image:alt" content={resolvedImageAlt} />
+    {publishedIso && <meta property="article:published_time" content={publishedIso} />}
+    {tags.map((tag) => <meta property="article:tag" content={tag} />)}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl.href} />
+    <meta name="twitter:image:alt" content={resolvedImageAlt} />
     <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <div class="site-shell">

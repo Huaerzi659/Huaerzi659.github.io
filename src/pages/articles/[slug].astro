@@ -20,7 +20,16 @@ const previous = posts[index + 1];
 const next = posts[index - 1];
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  canonical={`/articles/${post.id}/`}
+  image={post.data.image}
+  imageAlt={`${post.data.title} 封面图`}
+  type="article"
+  publishedTime={post.data.date}
+  tags={post.data.tags}
+>
   <article class="section article-page">
     <div class="container">
       <header class="article-header">

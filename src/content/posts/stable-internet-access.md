@@ -4,6 +4,7 @@ description: "给零基础用户的一份科学上网入门：先分清机场、
 date: "2026-06-10"
 tags: ["技术"]
 featured: false
+image: "/images/articles/stable-internet-access/cover-stable-internet-guide.png"
 ---
 
 ![如何优雅稳定地科学上网封面图](/images/articles/stable-internet-access/cover-stable-internet-guide.svg)

@@ -4,6 +4,7 @@ description: "用一句话说明这篇文章解决什么问题，或者记录了
 date: "2026-06-12"
 tags: ["技术"]
 featured: false
+# image: "/images/articles/example-post/cover-example-post.png"
 ---
 
 开头先告诉读者：这篇文章适合谁、解决什么问题、为什么值得读。

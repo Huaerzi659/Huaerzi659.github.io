@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Waltz, Then Think default share image</title>
+  <desc id="desc">A cyberpunk and scroll inspired share image for the Waltz, Then Think blog.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05060f"/>
+      <stop offset="0.48" stop-color="#101525"/>
+      <stop offset="1" stop-color="#f7efe0"/>
+    </linearGradient>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00f5ff"/>
+      <stop offset="0.5" stop-color="#ff2bd6"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0 0 0 0 0 0.92 0 0 0 0 1 0 0 0 0.45 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#00f5ff" stroke-opacity="0.12" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.72"/>
+  <path d="M84 122C230 58 360 72 474 164c137 111 284 99 443-36 69-59 137-84 199-75v515H84Z" fill="#fffaf0" opacity="0.1"/>
+  <path d="M0 513c170-69 320-62 452 21 150 94 319 103 508 28 81-32 161-44 240-36v104H0Z" fill="#f97316" opacity="0.16"/>
+  <rect x="78" y="78" width="1044" height="474" rx="30" fill="#080b16" opacity="0.82" stroke="#00f5ff" stroke-opacity="0.42" stroke-width="2"/>
+  <rect x="102" y="102" width="996" height="426" rx="22" fill="none" stroke="#fffaf0" stroke-opacity="0.16" stroke-width="1.5"/>
+  <g filter="url(#glow)">
+    <path d="M118 150h964" stroke="url(#ribbon)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M118 480h360" stroke="url(#ribbon)" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+  </g>
+  <text x="120" y="246" fill="#fffaf0" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800">Waltz,</text>
+  <text x="120" y="345" fill="#fffaf0" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="82" font-weight="800">Then Think</text>
+  <text x="126" y="414" fill="#9befff" font-family="Consolas, Menlo, monospace" font-size="26">TECH / NOTES / IDEAS / SPARKS</text>
+  <g transform="translate(808 184)">
+    <rect x="0" y="0" width="210" height="276" rx="20" fill="#fffaf0" opacity="0.9"/>
+    <rect x="24" y="36" width="162" height="10" rx="5" fill="#1a2d4c" opacity="0.36"/>
+    <rect x="24" y="76" width="120" height="10" rx="5" fill="#f97316" opacity="0.62"/>
+    <rect x="24" y="116" width="154" height="10" rx="5" fill="#1a2d4c" opacity="0.28"/>
+    <circle cx="105" cy="190" r="42" fill="#0f8bb3" opacity="0.62"/>
+    <path d="M72 208c34-54 64-54 98 0" fill="none" stroke="#ff2bd6" stroke-width="10" stroke-linecap="round" opacity="0.68"/>
+  </g>
+</svg>

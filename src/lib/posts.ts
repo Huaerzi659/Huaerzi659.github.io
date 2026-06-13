@@ -39,6 +39,31 @@ export function getPostsByTag(posts: Post[], tag: string) {
   return sortPostsByDate(posts).filter((post) => post.data.tags.includes(tag));
 }
 
+export function getRelatedPosts(posts: Post[], currentPost: Post, limit = 3) {
+  const candidates = posts.filter((post) => post.id !== currentPost.id);
+  const rankedPosts = candidates
+    .map((post) => {
+      const sharedTags = post.data.tags.filter((tag) => currentPost.data.tags.includes(tag)).length;
+
+      return { post, sharedTags };
+    })
+    .filter((item) => item.sharedTags > 0)
+    .sort((a, b) => {
+      if (b.sharedTags !== a.sharedTags) {
+        return b.sharedTags - a.sharedTags;
+      }
+
+      return b.post.data.date.getTime() - a.post.data.date.getTime();
+    })
+    .map((item) => item.post);
+
+  const fallbackPosts = sortPostsByDate(candidates).filter(
+    (post) => !rankedPosts.some((ranked) => ranked.id === post.id)
+  );
+
+  return [...rankedPosts, ...fallbackPosts].slice(0, limit);
+}
+
 export function getTagSummaries(posts: Post[]): TagSummary[] {
   return getAllTags(posts).map((tag) => {
     const taggedPosts = getPostsByTag(posts, tag);

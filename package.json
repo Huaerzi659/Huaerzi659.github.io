@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "verify:content": "node scripts/verify-content.mjs",
+    "verify:reading": "node scripts/verify-reading-experience.mjs",
     "verify:seo": "node scripts/verify-seo.mjs",
     "verify:rss": "node scripts/verify-rss.mjs",
     "verify:motion": "node scripts/verify-motion.mjs",

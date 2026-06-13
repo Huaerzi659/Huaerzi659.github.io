@@ -1,0 +1,89 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const tocItems = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
+---
+
+{
+  tocItems.length > 0 && (
+    <aside class="article-toc surface" aria-label="文章目录">
+      <p class="terminal-label">contents</p>
+      <h2>目录</h2>
+      <nav>
+        {tocItems.map((heading) => (
+          <a class:list={["toc-link", `depth-${heading.depth}`]} href={`#${heading.slug}`}>
+            {heading.text}
+          </a>
+        ))}
+      </nav>
+    </aside>
+  )
+}
+
+<style>
+  .article-toc {
+    position: sticky;
+    top: 86px;
+    align-self: start;
+    max-height: calc(100vh - 108px);
+    overflow: auto;
+    padding: 16px;
+  }
+
+  .article-toc h2 {
+    margin: 0 0 12px;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  nav {
+    display: grid;
+    gap: 4px;
+  }
+
+  .toc-link {
+    border-left: 2px solid transparent;
+    padding: 6px 0 6px 10px;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.45;
+    text-decoration: none;
+  }
+
+  .toc-link:hover,
+  .toc-link:focus-visible {
+    border-left-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+  }
+
+  .depth-3 {
+    padding-left: 22px;
+    color: var(--faint);
+    font-size: 0.82rem;
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .toc-link:hover,
+  :global(:root[data-theme="anime-scroll"]) .toc-link:focus-visible {
+    border-left-color: rgba(249, 115, 22, 0.68);
+    color: #9a3412;
+  }
+
+  @media (max-width: 980px) {
+    .article-toc {
+      position: static;
+      max-height: none;
+      order: 2;
+    }
+  }
+</style>

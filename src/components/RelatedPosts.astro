@@ -1,0 +1,54 @@
+---
+import type { Post } from "../lib/posts";
+import ArticleCard from "./ArticleCard.astro";
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+{
+  posts.length > 0 && (
+    <section class="related-posts" aria-label="相关文章推荐">
+      <div class="related-head">
+        <p class="terminal-label">related</p>
+        <h2>相关文章</h2>
+      </div>
+      <div class="related-grid">
+        {posts.map((post) => <ArticleCard post={post} />)}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .related-posts {
+    max-width: 820px;
+    margin: 54px auto 0;
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+  }
+
+  .related-head {
+    margin-bottom: 16px;
+  }
+
+  .related-head h2 {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    line-height: 1.15;
+  }
+
+  .related-grid {
+    display: grid;
+    gap: 14px;
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .related-posts {
+    border-top-color: rgba(26, 45, 76, 0.18);
+  }
+</style>

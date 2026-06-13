@@ -1,0 +1,168 @@
+<div
+  class="reading-progress"
+  role="progressbar"
+  aria-label="文章阅读进度"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+>
+  <span data-reading-progress></span>
+</div>
+
+<script>
+  const progressTrack = document.querySelector("[data-reading-progress]");
+  const progressRoot = progressTrack?.parentElement;
+  const articleBody = document.querySelector("[data-article-body]");
+  let progressFrame = 0;
+
+  const setProgress = () => {
+    progressFrame = 0;
+
+    if (!progressTrack || !progressRoot || !articleBody) {
+      return;
+    }
+
+    const start = articleBody.getBoundingClientRect().top + window.scrollY;
+    const end = start + articleBody.scrollHeight - window.innerHeight;
+    const distance = Math.max(end - start, 1);
+    const rawProgress = (window.scrollY - start) / distance;
+    const progress = Math.min(Math.max(rawProgress, 0), 1);
+    const progressValue = String(Math.round(progress * 100));
+
+    progressTrack.style.transform = `scaleX(${progress})`;
+    progressRoot.setAttribute("aria-valuenow", progressValue);
+  };
+
+  const requestProgressUpdate = () => {
+    if (progressFrame) {
+      return;
+    }
+
+    progressFrame = window.requestAnimationFrame(setProgress);
+  };
+
+  const copyCode = async (code) => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(code);
+      return;
+    }
+
+    const field = document.createElement("textarea");
+    field.value = code;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.append(field);
+    field.select();
+    document.execCommand("copy");
+    field.remove();
+  };
+
+  document.querySelectorAll(".prose pre").forEach((block) => {
+    if (block.querySelector(".copy-code-button")) {
+      return;
+    }
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "copy-code-button";
+    button.setAttribute("aria-label", "复制代码");
+    button.textContent = "复制";
+
+    button.addEventListener("click", async () => {
+      const code = block.querySelector("code")?.textContent ?? "";
+
+      try {
+        await copyCode(code.trimEnd());
+        button.textContent = "已复制";
+        button.dataset.copied = "true";
+        window.setTimeout(() => {
+          button.textContent = "复制";
+          delete button.dataset.copied;
+        }, 1600);
+      } catch {
+        button.textContent = "失败";
+        window.setTimeout(() => {
+          button.textContent = "复制";
+        }, 1600);
+      }
+    });
+
+    block.append(button);
+  });
+
+  setProgress();
+  window.addEventListener("scroll", requestProgressUpdate, { passive: true });
+  window.addEventListener("resize", requestProgressUpdate);
+</script>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 30;
+    height: 3px;
+    pointer-events: none;
+    background: transparent;
+  }
+
+  .reading-progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+    box-shadow: var(--cyan-glow);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  :global(:root[data-theme="anime-scroll"]) .reading-progress span {
+    background: linear-gradient(90deg, #0f8bb3, #f97316);
+    box-shadow: 0 8px 18px rgba(249, 115, 22, 0.18);
+  }
+
+  :global(.prose pre) {
+    position: relative;
+    padding-top: 48px;
+  }
+
+  :global(.copy-code-button) {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    min-height: 28px;
+    border: 1px solid rgba(0, 245, 255, 0.36);
+    border-radius: 6px;
+    background: rgba(0, 245, 255, 0.1);
+    padding: 0 10px;
+    color: var(--neon-cyan);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    line-height: 1;
+  }
+
+  :global(.copy-code-button:hover),
+  :global(.copy-code-button:focus-visible),
+  :global(.copy-code-button[data-copied="true"]) {
+    border-color: rgba(255, 43, 214, 0.5);
+    background: rgba(255, 43, 214, 0.12);
+    color: #ffd8f7;
+  }
+
+  :global(:root[data-theme="anime-scroll"] .copy-code-button) {
+    border-color: rgba(249, 115, 22, 0.36);
+    background: rgba(249, 115, 22, 0.12);
+    color: #9a3412;
+  }
+
+  :global(:root[data-theme="anime-scroll"] .copy-code-button:hover),
+  :global(:root[data-theme="anime-scroll"] .copy-code-button:focus-visible),
+  :global(:root[data-theme="anime-scroll"] .copy-code-button[data-copied="true"]) {
+    border-color: rgba(15, 139, 179, 0.5);
+    background: rgba(15, 139, 179, 0.12);
+    color: #0f5f8a;
+  }
+</style>

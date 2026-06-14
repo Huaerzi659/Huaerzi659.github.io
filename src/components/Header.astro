@@ -29,6 +29,13 @@
     background: rgba(255, 250, 240, 0.88);
   }
 
+  :global(:root[data-theme="minimal"]) .site-header {
+    border-bottom-color: rgba(79, 124, 255, 0.18);
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.8), var(--glass-blue), var(--glass-coral)),
+      rgba(255, 255, 255, 0.74);
+  }
+
   .header-inner {
     min-height: 62px;
     display: flex;
@@ -79,11 +86,26 @@
     text-shadow: none;
   }
 
+  :global(:root[data-theme="minimal"]) .brand-mark {
+    border-color: rgba(79, 124, 255, 0.3);
+    background: linear-gradient(135deg, var(--glass-blue), var(--glass-mint), rgba(255, 255, 255, 0.76));
+    box-shadow: 0 10px 24px rgba(79, 124, 255, 0.12);
+    color: var(--accent-ink);
+    text-shadow: none;
+  }
+
   :global(:root[data-theme="anime-scroll"]) .brand:hover .brand-mark,
   :global(:root[data-theme="anime-scroll"]) .brand:focus-visible .brand-mark {
     border-color: rgba(15, 139, 179, 0.6);
     box-shadow: 0 10px 22px rgba(15, 139, 179, 0.16);
     color: #0f5f8a;
+  }
+
+  :global(:root[data-theme="minimal"]) .brand:hover .brand-mark,
+  :global(:root[data-theme="minimal"]) .brand:focus-visible .brand-mark {
+    border-color: rgba(238, 95, 134, 0.42);
+    box-shadow: var(--pink-glow);
+    color: #be315d;
   }
 
   .brand-text span {
@@ -93,6 +115,11 @@
 
   :global(:root[data-theme="anime-scroll"]) .brand-text span {
     color: #9a3412;
+    text-shadow: none;
+  }
+
+  :global(:root[data-theme="minimal"]) .brand-text span {
+    color: #be315d;
     text-shadow: none;
   }
 
@@ -123,6 +150,13 @@
     border-color: rgba(249, 115, 22, 0.38);
     background: rgba(249, 115, 22, 0.1);
     color: #9a3412;
+    text-shadow: none;
+  }
+
+  :global(:root[data-theme="minimal"]) .nav a:hover {
+    border-color: rgba(238, 95, 134, 0.3);
+    background: linear-gradient(135deg, var(--glass-coral), var(--glass-lilac));
+    color: #be315d;
     text-shadow: none;
   }
 

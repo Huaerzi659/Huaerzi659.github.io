@@ -171,6 +171,16 @@ const hasToc = tocHeadings.length > 0;
     color: var(--ink);
   }
 
+  :global(:root[data-theme="minimal"]) .post-nav a {
+    border-color: var(--line-muted);
+    background:
+      linear-gradient(135deg, var(--glass-blue), transparent 44%),
+      linear-gradient(315deg, var(--glass-mint), transparent 54%),
+      var(--surface-quiet);
+    box-shadow: var(--shadow);
+    color: var(--ink);
+  }
+
   .post-nav a:hover {
     border-color: var(--neon-pink);
     box-shadow: var(--pink-glow);
@@ -179,6 +189,11 @@ const hasToc = tocHeadings.length > 0;
   :global(:root[data-theme="anime-scroll"]) .post-nav a:hover {
     border-color: rgba(249, 115, 22, 0.5);
     box-shadow: 5px 5px 0 rgba(15, 139, 179, 0.12);
+  }
+
+  :global(:root[data-theme="minimal"]) .post-nav a:hover {
+    border-color: rgba(238, 95, 134, 0.36);
+    box-shadow: var(--pink-glow), 0 16px 34px rgba(58, 76, 118, 0.1);
   }
 
   .post-nav .next {
@@ -229,6 +244,14 @@ const hasToc = tocHeadings.length > 0;
   :global(:root[data-theme="anime-scroll"]) .comments-reserved {
     border-color: rgba(249, 115, 22, 0.38);
     background: rgba(249, 115, 22, 0.08);
+    color: var(--copy);
+  }
+
+  :global(:root[data-theme="minimal"]) .comments-reserved {
+    border-color: rgba(139, 124, 246, 0.22);
+    background:
+      linear-gradient(135deg, var(--glass-lilac), transparent 56%),
+      rgba(255, 255, 255, 0.58);
     color: var(--copy);
   }
 

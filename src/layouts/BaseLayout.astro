@@ -86,17 +86,18 @@ const structuredData = [
     <script is:inline>
       (() => {
         const storageKey = "waltz-theme";
-        const themes = new Set(["cyber", "anime-scroll"]);
+        const themes = new Set(["cyber", "anime-scroll", "minimal"]);
         const colors = {
           cyber: "#05060f",
           "anime-scroll": "#f7efe0",
+          minimal: "#f8fbff",
         };
 
         try {
           const stored = localStorage.getItem(storageKey);
           const theme = themes.has(stored) ? stored : "cyber";
           document.documentElement.dataset.theme = theme;
-          document.documentElement.style.colorScheme = theme === "anime-scroll" ? "light" : "dark";
+          document.documentElement.style.colorScheme = theme === "cyber" ? "dark" : "light";
           document.querySelector('meta[name="theme-color"]')?.setAttribute("content", colors[theme]);
         } catch {
           document.documentElement.dataset.theme = "cyber";

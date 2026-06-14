@@ -14,7 +14,7 @@ const checks = [
   },
   {
     file: "src/pages/index.astro",
-    tokens: ["hero-hud", "hero-scanline", "status-pulse"],
+    tokens: ["hero-hud", "hero-scanline", "hero-scanline-pass", "status-pulse", 'data-theme="minimal"'],
   },
   {
     file: "src/components/ArticleCard.astro",
@@ -23,6 +23,14 @@ const checks = [
   {
     file: "src/components/TagPill.astro",
     tokens: ["tag-sheen"],
+  },
+  {
+    file: "src/components/BackToTop.astro",
+    tokens: ["scrollTo", "prefers-reduced-motion", "motionQuery.matches"],
+  },
+  {
+    file: "src/components/ArticleEnhancements.astro",
+    tokens: ["requestAnimationFrame", "copy-code-button", 'data-copied="true"'],
   },
 ];
 

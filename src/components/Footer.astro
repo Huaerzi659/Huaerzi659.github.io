@@ -38,6 +38,15 @@
       var(--surface-quiet);
   }
 
+  :global(:root[data-theme="minimal"]) .footer-panel {
+    border-color: var(--line-muted);
+    background:
+      linear-gradient(135deg, var(--glass-blue), transparent 40%),
+      linear-gradient(315deg, var(--glass-coral), transparent 46%),
+      var(--surface-quiet);
+    box-shadow: var(--shadow);
+  }
+
   .footer-panel::before {
     content: "";
     position: absolute;
@@ -51,6 +60,11 @@
 
   :global(:root[data-theme="anime-scroll"]) .footer-panel::before {
     background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.6), rgba(15, 139, 179, 0.42), transparent);
+    box-shadow: none;
+  }
+
+  :global(:root[data-theme="minimal"]) .footer-panel::before {
+    background: linear-gradient(90deg, transparent, rgba(79, 124, 255, 0.42), rgba(22, 184, 164, 0.32), rgba(238, 95, 134, 0.34), rgba(139, 124, 246, 0.28), transparent);
     box-shadow: none;
   }
 
@@ -101,12 +115,25 @@
     background: rgba(255, 250, 240, 0.72);
   }
 
+  :global(:root[data-theme="minimal"]) .footer-links a {
+    border-color: var(--line-muted);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), var(--glass-blue));
+  }
+
   :global(:root[data-theme="anime-scroll"]) .footer-links a:hover,
   :global(:root[data-theme="anime-scroll"]) .footer-links a:focus-visible {
     border-color: rgba(249, 115, 22, 0.58);
     background: var(--stamp-bg);
     color: #9a3412;
     box-shadow: 0 10px 24px rgba(249, 115, 22, 0.16);
+  }
+
+  :global(:root[data-theme="minimal"]) .footer-links a:hover,
+  :global(:root[data-theme="minimal"]) .footer-links a:focus-visible {
+    border-color: rgba(238, 95, 134, 0.38);
+    background: linear-gradient(135deg, var(--glass-coral), var(--glass-lilac));
+    color: #be315d;
+    box-shadow: var(--pink-glow);
   }
 
   @media (max-width: 680px) {

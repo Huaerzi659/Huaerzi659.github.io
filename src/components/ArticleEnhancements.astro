@@ -123,6 +123,11 @@
     box-shadow: 0 8px 18px rgba(249, 115, 22, 0.18);
   }
 
+  :global(:root[data-theme="minimal"]) .reading-progress span {
+    background: linear-gradient(90deg, #4f7cff, #16b8a4, #ee5f86, #8b7cf6);
+    box-shadow: 0 8px 20px rgba(79, 124, 255, 0.14);
+  }
+
   :global(.prose pre) {
     position: relative;
     padding-top: 48px;
@@ -158,11 +163,25 @@
     color: #9a3412;
   }
 
+  :global(:root[data-theme="minimal"] .copy-code-button) {
+    border-color: rgba(79, 124, 255, 0.28);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), var(--glass-blue));
+    color: var(--accent-ink);
+  }
+
   :global(:root[data-theme="anime-scroll"] .copy-code-button:hover),
   :global(:root[data-theme="anime-scroll"] .copy-code-button:focus-visible),
   :global(:root[data-theme="anime-scroll"] .copy-code-button[data-copied="true"]) {
     border-color: rgba(15, 139, 179, 0.5);
     background: rgba(15, 139, 179, 0.12);
     color: #0f5f8a;
+  }
+
+  :global(:root[data-theme="minimal"] .copy-code-button:hover),
+  :global(:root[data-theme="minimal"] .copy-code-button:focus-visible),
+  :global(:root[data-theme="minimal"] .copy-code-button[data-copied="true"]) {
+    border-color: rgba(238, 95, 134, 0.4);
+    background: linear-gradient(135deg, var(--glass-coral), var(--glass-lilac));
+    color: #be315d;
   }
 </style>

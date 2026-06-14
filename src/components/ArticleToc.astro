@@ -79,6 +79,12 @@ const tocItems = headings.filter((heading) => heading.depth >= 2 && heading.dept
     color: #9a3412;
   }
 
+  :global(:root[data-theme="minimal"]) .toc-link:hover,
+  :global(:root[data-theme="minimal"]) .toc-link:focus-visible {
+    border-left-color: rgba(238, 95, 134, 0.52);
+    color: #be315d;
+  }
+
   @media (max-width: 980px) {
     .article-toc {
       position: static;

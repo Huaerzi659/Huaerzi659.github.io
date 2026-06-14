@@ -166,9 +166,24 @@ const topics = getTagSummaries(posts);
     color: var(--ink);
   }
 
+  :global(:root[data-theme="minimal"]) .topic-card {
+    border-color: var(--line-muted);
+    background:
+      linear-gradient(135deg, var(--glass-blue), transparent 42%),
+      linear-gradient(315deg, var(--glass-lilac), transparent 54%),
+      var(--surface-quiet);
+    box-shadow: var(--shadow);
+    color: var(--ink);
+  }
+
   :global(:root[data-theme="anime-scroll"]) .topic-card:hover {
     border-color: rgba(249, 115, 22, 0.52);
     box-shadow: 5px 5px 0 rgba(15, 139, 179, 0.12), 0 16px 32px rgba(57, 42, 22, 0.12);
+  }
+
+  :global(:root[data-theme="minimal"]) .topic-card:hover {
+    border-color: rgba(238, 95, 134, 0.34);
+    box-shadow: var(--pink-glow), 0 16px 34px rgba(58, 76, 118, 0.1);
   }
 
   .topic-card-head {
@@ -188,6 +203,11 @@ const topics = getTagSummaries(posts);
     color: var(--copy);
   }
 
+  :global(:root[data-theme="minimal"]) .topic-card span,
+  :global(:root[data-theme="minimal"]) .topic-card p {
+    color: var(--copy);
+  }
+
   .topic-groups-section {
     border-top: 1px solid var(--line);
     background:
@@ -199,6 +219,13 @@ const topics = getTagSummaries(posts);
     background:
       linear-gradient(90deg, rgba(249, 115, 22, 0.08), transparent 44%),
       rgba(255, 250, 240, 0.48);
+  }
+
+  :global(:root[data-theme="minimal"]) .topic-groups-section {
+    background:
+      linear-gradient(90deg, rgba(79, 124, 255, 0.09), transparent 36%),
+      linear-gradient(270deg, rgba(238, 95, 134, 0.08), transparent 44%),
+      rgba(255, 255, 255, 0.54);
   }
 
   .topic-groups {
@@ -252,10 +279,23 @@ const topics = getTagSummaries(posts);
     text-shadow: none;
   }
 
+  :global(:root[data-theme="minimal"]) .topic-more {
+    border-color: rgba(238, 95, 134, 0.28);
+    background: linear-gradient(135deg, var(--glass-coral), rgba(255, 255, 255, 0.66));
+    color: #be315d;
+    text-shadow: none;
+  }
+
   :global(:root[data-theme="anime-scroll"]) .topic-more:hover {
     border-color: rgba(15, 139, 179, 0.56);
     color: #0f5f8a;
     box-shadow: 4px 4px 0 rgba(249, 115, 22, 0.12);
+  }
+
+  :global(:root[data-theme="minimal"]) .topic-more:hover {
+    border-color: rgba(79, 124, 255, 0.38);
+    color: var(--accent-ink);
+    box-shadow: var(--cyan-glow);
   }
 
   .article-list {

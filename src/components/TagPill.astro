@@ -51,6 +51,14 @@ const { tag, href, count } = Astro.props;
     text-shadow: none;
   }
 
+  :global(:root[data-theme="minimal"]) .tag-pill {
+    border-color: rgba(22, 184, 164, 0.28);
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--glass-mint), rgba(255, 255, 255, 0.66));
+    color: #117c71;
+    text-shadow: none;
+  }
+
   .tag-link {
     cursor: pointer;
     text-decoration: none;
@@ -78,6 +86,14 @@ const { tag, href, count } = Astro.props;
     color: #0f5f8a;
   }
 
+  :global(:root[data-theme="minimal"]) .tag-link:hover,
+  :global(:root[data-theme="minimal"]) .tag-link:focus-visible {
+    border-color: rgba(238, 95, 134, 0.38);
+    background: linear-gradient(135deg, var(--glass-coral), var(--glass-lilac));
+    box-shadow: var(--pink-glow);
+    color: #be315d;
+  }
+
   .tag-sheen {
     position: absolute;
     inset: -40% auto -40% -34%;
@@ -95,6 +111,12 @@ const { tag, href, count } = Astro.props;
       animation: sheen-pass 520ms var(--ease-out);
       opacity: 1;
     }
+
+    :global(:root[data-theme="minimal"]) .tag-link:hover .tag-sheen,
+    :global(:root[data-theme="minimal"]) .tag-link:focus-visible .tag-sheen {
+      animation: none;
+      opacity: 0;
+    }
   }
 
   .tag-count {
@@ -106,5 +128,10 @@ const { tag, href, count } = Astro.props;
   :global(:root[data-theme="anime-scroll"]) .tag-count {
     border-left-color: rgba(249, 115, 22, 0.26);
     color: #0f5f8a;
+  }
+
+  :global(:root[data-theme="minimal"]) .tag-count {
+    border-left-color: rgba(22, 184, 164, 0.26);
+    color: var(--muted);
   }
 </style>

@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 
+// Pair with verify-design-system when validating visual-system changes.
 const checks = [
   {
     file: "src/components/BackToTop.astro",
@@ -12,6 +13,7 @@ const checks = [
       "data-theme-toggle",
       "waltz-theme",
       "updateThemeColor",
+      "minimal",
       "var(--corner-action-bg)",
       "var(--corner-action-border)",
       "var(--corner-action-shadow)",
@@ -30,6 +32,7 @@ const checks = [
       "waltz-theme",
       "theme-color",
       "anime-scroll",
+      "minimal",
       "document.documentElement.dataset.theme",
     ],
   },
@@ -38,6 +41,8 @@ const checks = [
     tokens: [
       ':root[data-theme="cyber"]',
       ':root[data-theme="anime-scroll"]',
+      ':root[data-theme="minimal"]',
+      'html[data-theme="minimal"]',
       "--surface-quiet",
       "--line-muted",
       "--scanline-opacity",
@@ -54,6 +59,7 @@ const checks = [
       "--speedline-opacity",
       "--stamp-bg",
       "anime-scroll",
+      "minimal",
       "body::before",
       "scroll-behavior: smooth",
       ".site-shell::after",
@@ -69,12 +75,15 @@ const checks = [
       'html[data-theme="anime-scroll"] .prose blockquote',
       'html[data-theme="anime-scroll"] .prose img',
       'html[data-theme="anime-scroll"] .prose table',
+      'html[data-theme="minimal"] .prose blockquote',
+      'html[data-theme="minimal"] .prose img',
+      'html[data-theme="minimal"] .prose table',
       "overflow-x: auto",
     ],
   },
   {
     file: "src/components/Footer.astro",
-    tokens: ["footer-panel::before", "footer-links a:focus-visible"],
+    tokens: ["footer-panel::before", "footer-links a:focus-visible", 'data-theme="minimal"'],
   },
   {
     file: "src/components/Header.astro",
@@ -105,6 +114,7 @@ const checks = [
       "article-desc",
       "color: var(--copy)",
       ':global(:root[data-theme="anime-scroll"]) .card-sheen',
+      ':global(:root[data-theme="minimal"]) .card-sheen',
       "animation: none",
     ],
   },
@@ -114,12 +124,16 @@ const checks = [
       ':global(:root[data-theme="anime-scroll"]) .topic-card',
       ':global(:root[data-theme="anime-scroll"]) .topic-groups-section',
       ':global(:root[data-theme="anime-scroll"]) .topic-more',
+      ':global(:root[data-theme="minimal"]) .topic-card',
+      ':global(:root[data-theme="minimal"]) .topic-groups-section',
+      ':global(:root[data-theme="minimal"]) .topic-more',
     ],
   },
   {
     file: "src/pages/topics/[slug].astro",
     tokens: [
       ':global(:root[data-theme="anime-scroll"]) .topic-back',
+      ':global(:root[data-theme="minimal"]) .topic-back',
     ],
   },
   {
@@ -127,6 +141,8 @@ const checks = [
     tokens: [
       ':global(:root[data-theme="anime-scroll"]) .post-nav a',
       ':global(:root[data-theme="anime-scroll"]) .comments-reserved',
+      ':global(:root[data-theme="minimal"]) .post-nav a',
+      ':global(:root[data-theme="minimal"]) .comments-reserved',
     ],
   },
   {
@@ -135,6 +151,9 @@ const checks = [
       ':global(:root[data-theme="anime-scroll"]) .contact-panel',
       ':global(:root[data-theme="anime-scroll"]) .contact-panel h2',
       ':global(:root[data-theme="anime-scroll"]) .contact-panel p:last-child',
+      ':global(:root[data-theme="minimal"]) .contact-panel',
+      ':global(:root[data-theme="minimal"]) .contact-panel h2',
+      ':global(:root[data-theme="minimal"]) .contact-panel p:last-child',
     ],
   },
 ];

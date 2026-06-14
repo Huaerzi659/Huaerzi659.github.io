@@ -13,7 +13,8 @@
     "verify:seo": "node scripts/verify-seo.mjs",
     "verify:rss": "node scripts/verify-rss.mjs",
     "verify:motion": "node scripts/verify-motion.mjs",
-    "verify:ux": "node scripts/verify-ux.mjs"
+    "verify:ux": "node scripts/verify-ux.mjs",
+    "verify:design-system": "node scripts/verify-design-system.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",

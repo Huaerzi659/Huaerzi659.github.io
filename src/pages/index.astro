@@ -283,6 +283,12 @@ const tags = getAllTags(posts);
     font-size: 0.74rem;
   }
 
+  :global(:root[data-theme="minimal"]) .status-dot {
+    border-color: rgba(22, 184, 164, 0.3);
+    background: linear-gradient(135deg, var(--glass-mint), rgba(255, 255, 255, 0.68));
+    color: #117c71;
+  }
+
   @keyframes hero-scanline-pass {
     0% {
       transform: translateX(-120%);
@@ -324,6 +330,13 @@ const tags = getAllTags(posts);
       linear-gradient(135deg, rgba(0, 245, 255, 0.045), transparent),
       var(--surface-muted);
     padding: 16px;
+  }
+
+  :global(:root[data-theme="minimal"]) .desk-stats div {
+    background:
+      linear-gradient(135deg, var(--glass-blue), transparent 58%),
+      linear-gradient(315deg, var(--glass-mint), transparent 62%),
+      var(--surface-muted);
   }
 
   .desk-stats strong {
@@ -387,6 +400,14 @@ const tags = getAllTags(posts);
     box-shadow: none;
   }
 
+  :global(:root[data-theme="minimal"]) .thinking-note {
+    border-color: rgba(238, 95, 134, 0.24);
+    background:
+      linear-gradient(135deg, var(--glass-coral), transparent 52%),
+      linear-gradient(315deg, var(--glass-lilac), transparent 58%),
+      rgba(255, 255, 255, 0.54);
+  }
+
   .thinking-note p:last-child {
     margin: 0;
     color: var(--copy);
@@ -428,6 +449,13 @@ const tags = getAllTags(posts);
       rgba(255, 250, 240, 0.52);
   }
 
+  :global(:root[data-theme="minimal"]) .focus-section {
+    background:
+      linear-gradient(90deg, rgba(238, 95, 134, 0.09), transparent 36%),
+      linear-gradient(270deg, rgba(22, 184, 164, 0.08), transparent 42%),
+      rgba(255, 255, 255, 0.54);
+  }
+
   .section-heading {
     margin-bottom: 20px;
   }
@@ -458,6 +486,16 @@ const tags = getAllTags(posts);
       var(--surface-quiet);
   }
 
+  :global(:root[data-theme="minimal"]) .topic-panel,
+  :global(:root[data-theme="minimal"]) .desk-panel {
+    border-color: var(--line-muted);
+    background:
+      linear-gradient(135deg, var(--glass-blue), transparent 46%),
+      linear-gradient(315deg, var(--glass-coral), transparent 52%),
+      var(--surface-quiet);
+    box-shadow: var(--shadow);
+  }
+
   :global(:root[data-theme="anime-scroll"]) .hero-hud {
     border-left-color: rgba(26, 45, 76, 0.2);
     background:
@@ -466,9 +504,21 @@ const tags = getAllTags(posts);
     opacity: 0.22;
   }
 
+  :global(:root[data-theme="minimal"]) .hero-hud {
+    border-left-color: rgba(79, 124, 255, 0.16);
+    background:
+      linear-gradient(90deg, rgba(79, 124, 255, 0.09), transparent 28%),
+      linear-gradient(180deg, rgba(238, 95, 134, 0.07), transparent 34%);
+    opacity: 0.18;
+  }
+
   :global(:root[data-theme="anime-scroll"]) .hero-scanline {
     background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.48), rgba(15, 139, 179, 0.28), transparent);
     box-shadow: 0 0 14px rgba(249, 115, 22, 0.12);
+  }
+
+  :global(:root[data-theme="minimal"]) .hero-scanline {
+    display: none;
   }
 
   .tag-board {

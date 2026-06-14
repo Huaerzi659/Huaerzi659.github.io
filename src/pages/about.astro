@@ -116,6 +116,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     color: var(--ink);
   }
 
+  :global(:root[data-theme="minimal"]) .contact-panel {
+    border-color: var(--line-muted);
+    background:
+      linear-gradient(135deg, var(--glass-blue), transparent 42%),
+      linear-gradient(315deg, var(--glass-coral), var(--glass-lilac) 58%, transparent),
+      var(--surface-quiet);
+    box-shadow: var(--shadow);
+    color: var(--ink);
+  }
+
   .contact-panel .terminal-label {
     color: var(--neon-pink);
     text-shadow: var(--pink-glow);
@@ -123,6 +133,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   :global(:root[data-theme="anime-scroll"]) .contact-panel .terminal-label {
     color: #9a3412;
+    text-shadow: none;
+  }
+
+  :global(:root[data-theme="minimal"]) .contact-panel .terminal-label {
+    color: #be315d;
     text-shadow: none;
   }
 
@@ -139,6 +154,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     text-shadow: none;
   }
 
+  :global(:root[data-theme="minimal"]) .contact-panel h2 {
+    color: var(--ink);
+    text-shadow: none;
+  }
+
   .contact-panel p:last-child {
     max-width: 680px;
     margin-bottom: 0;
@@ -146,6 +166,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   :global(:root[data-theme="anime-scroll"]) .contact-panel p:last-child {
+    color: var(--copy);
+  }
+
+  :global(:root[data-theme="minimal"]) .contact-panel p:last-child {
     color: var(--copy);
   }
 
